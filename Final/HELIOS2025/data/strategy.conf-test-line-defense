@@ -1,0 +1,16 @@
+# format:
+#  "team_name strategy_name"
+# "*" means the default assingment for unknown teams, and have to be defined only once.
+
+*	523-rc2025
+#*	433
+
+HELIOS2024	  523-line-defense
+HELIOS2025	  523-line-defense
+CYRUS		  523-cyrus2025
+FRA-UNIted    442-fra
+RoboCIn		  523-robocin2025
+TitasdaRobotica 523-titas2025
+YuShan2023	  523-yushan2024
+YuShan2024	  523-yushan2025
+YuShan2025	  523-yushan2025

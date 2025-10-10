@@ -1,0 +1,3 @@
+sample_player-bhv_basic_mark.o: bhv_basic_mark.cpp \
+ /usr/include/stdc-predef.h
+/usr/include/stdc-predef.h:

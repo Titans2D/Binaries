@@ -1,0 +1,1775 @@
+[8.02]
+	Removed bug in server which sent incorrect error messages when parsing
+	some say commands that contained brackets in the message.  There is
+	still a slight problem when sending concatenated commands to the
+	server in that the say message must always be last.
+		
+        Removed bug which allowed a monitor to have multiple connections
+        to the one server
+	
+	The server now compiles without error with gcc-3.0
+
+	The server now supports compressed logging.  `text_log_compression'
+	and `game_log_compression' are used to regulate the speed of 
+	compression,  where 0 indicates no compression and 9 indicates the
+	best compression (slowest). The default is 0.
+      
+	The server now renames the text logs and game logs to 
+	`<TEAM_L>_<TEAM_L_POINTS>-vs-<TEAM_R>_<TEAM_R_POINTS>.rcl' and
+	`<TEAM_L>_<TEAM_L_POINTS>-vs-<TEAM_R>_<TEAM_R_POINTS>.rcg'
+	respectively. `rcl' stands for `RoboCup Command Log'. `rcg' stands for
+	`RoboCup Game'.
+
+	The Log files are saved in the directories specified by
+	the `text_log_dir' and `game_log_dir' parameters respectively. 
+
+	Fixed logging names can be specified using the `text_log_fixed' and
+	`game_log_fixed'.  The files will be saved with the names specfied
+	by `text_log_fixed_name' and `game_log_fixed_name' each with the `.rcl'
+	or `.rcg' suffix respectively.
+
+	When fixed logging is disabled, a date stamp can be prepended to the
+	output names if `text_log_dated' or `game_log_dated' is on. The format
+	can be specified with `log_date_format'.  See `man strftime' for
+	details on the format string. 
+
+	Logging can be turned on and off using `text_logging' and
+	`game_logging'.
+
+	The version of the game log is specified with `game_log_version'.
+	
+	Player commands will be recorded in the game log if `record_messages'
+	is on.
+
+	Player commands will be sent to the monitors is `send_comms' is on.
+	
+	Removed use of <sstream> as it is not supported in gcc-2.95.2.  The
+	use of this was only introduced in 8.01
+
+	Changed protocol for full state for clients connecting with a version
+	8.0 or above protocol to (without the line breaks):
+
+	  fullstate : (fullstate <time>
+	                (pmode {goalie_catch_ball_{l|r}|<play mode>})
+			(vmode {high|low} {narrow|normal|high})
+			(stamina <stamina> <effort> <recovery>)
+			(count <kicks> <dashes> <turns> <catches> <moves>
+		            <turn_necks> <change_views> <says>)	
+			(score <team_points> <enemy_points>)
+			((b) <pos.x> <pos.y> <vel.x> <vel.y>)
+			<players>)
+
+	  players : {<player>|<player> <players>}
+
+	  player : ((p {l|r} <unum> {g|<player_type_id>}) <pos.x> <pos.y>
+	             <vel.x> <vel.y> <body_angle> <neck_angle>)
+
+[8.01]
+        Created a landmark reader which reads the positions of the landmarks
+	on the field from an xml file. Currently it will only read flags, but 
+	this will be extended to include lines, pitch, goals and penalty areas.
+	The landmark reader requires the expat library.  If expat is not on the
+	system, the server will use default landmarks and will not read or 
+	create the ~/.rcssserver-landmark.xml file.  Future versions will
+	comunicate to the clients at startup the postions of landmarks.
+	
+	Placed checks for `nan' in client command parser.  If a `nan' is 
+	detected, the server replies with `(error illegal_command_form)'.
+
+	Fixed small problem with rcssclient, which resulted in linking errors.
+
+	Changed protocol for parameters and hetro-types for clients connecting
+	with a version 8.0 or above protocol to:
+
+	  (server_param (goal_width <value>) (player_size <value>) ... )
+	  (player_param (player_types <value>) (subs_max <value>) ... )
+	  (player_type (id <value>) (player_speed_max <value>) ... ) 
+
+	Fixed bug which allowed players to send monitor commands
+
+	Server will remove monitors from the monitor list after they send
+	`(dispbye)'.  By using this, monitors can connect and disconnect
+	as offen as required without affecting the game.
+	
+	Changed protocol for full state for clients connecting with a version
+	8.0 or above protocol to (without the line breaks):
+
+	  fullstate : (fullstate <time>
+	                (pmode {goalie_catch_ball_{l|r}|<play mode>})
+			(score <team_points> <enemy_points>)
+			((b) <pos.x> <pos.y> <vel.x> <vel.y>)
+			<players>)
+
+	  players : {<player>|<player> <players>}
+
+	  player : ((p {l|r} <unum> {g|<player_type_id>}) <pos.x> <pos.y>
+	             <vel.x> <vel.y> <body_angle> <neck_angle>
+		     (vmode {high|low} {narrow|normal|high})
+		     (stamina <stamina> <effort> <recovery>)
+		     (count <kicks> <dashes> <turns> <catches> <moves>
+		            <turn_necks> <change_views> <says>))
+[8.00]
+	Moved to using automake and autoconf.
+
+	renamed to rcssserver
+	
+	server will now look for config files under ~/.rcssserver-server.conf
+	and ~/.rcssserver-player.conf, unless -sfile of -pfile are specified.
+	If a config file does not exist a default (Seattle settings) file is
+	created.
+
+	The sample client is now named rcssclient and will be built if
+	the `--enable-rcssclient' option is given to `./configure'  
+
+[7.11]
+ * Added options for this years evaluation session. 
+   `slowness_on_top_for_left_team' adjusts `player_speed_max',
+   `player_accel_max' and `dash_power_rate' for all players on the left team
+   when they are in the top half of the field. `slowness_on_top_for_right_team'
+   does the same for players on the right team.  The value of these options are
+   sent to players in the server_param message only if they connect to the
+   server specifying version 7.11 or above.
+
+ * There was a typo in the coach_lang_grammar file. 'pmode' should
+   have been 'playm' 
+
+ * A "synchronized mode" has been added to the simulator. The server
+   will operate in this mode if you provide the synch_mode flag. Here
+   is how the synchronous mode works:
+
+   - Cycles no longer take a fixed amount of time.
+   - Each cycle, the server determines which messages will be sent to
+     the players before 60ms (synch_offset) into the cycle. All of
+     those messages are sent. 
+   - The server then sends "(think)" to all the agents (coach and
+     trainer included)
+   - At this point, the agents should do their action selection and
+     send commands to the server. The server processes commands as
+     they come in.
+   - The agents should then send "(done)" to the server. Once the
+     server has received "(done)" from all agents, it will advance to
+     the next cycle
+
+   Note that the server will allow a few cycles to go by without
+   receiving a (done) from all the agents, and will print a warning
+   when it is doing so.
+
+ * There is a new option in the player parameters 'random_seed'. It
+   allows you to specify the random seed for generating heterogeneous
+   types (in order to reproducible types). Using the same seed will
+   give you exactly the same player types.
+
+[7.10]
+ * Fixed bug in new collision detection/modelling.  If the mode is not playon,
+   collisions with the ball will not move it.
+
+[7.09]
+ * Fixed bug in collision detection/modelling. In the old impementation, it
+   was possible for object A to collide with object B, but object B would not
+   collide with object A.  As such object A would be repositioned and have
+   its velocity multiplied by -0.1, and nothing would happen to object B.
+   The new implementation checks for collisions against every object strictly
+   after every object has been moved.  When the server detects a collision
+   between two objects, it calculates a new postion for both objects. After
+   every object has been checked for collision, the server then moves all the
+   objects that have collided to their collision position, or the average of
+   it's collision positions if the object collided with multiple objects.
+   The detection and movement process is repeated until no more collisions
+   are detected or a maxiumum of 10 times.  This is so objects that are moved
+   because of a collision are then checked to see if that movement may have
+   caused a collision with another object.  As a last step, each object that
+   has been recorded in one or more collisions has it's velocity multiplied
+   by -0.1.  
+ * Increased maximum packet size to from the server to 8K. This mainly
+   has implications for the coach and the coach language. In
+   particular, the actual message part of a coach 'say' command should
+   be no more than: 8192-38 = 8154 characters long (i.e. in (say STR),
+   the length of STR should be no more than 8154). This is to allow
+   the proper formatting for the message sent to the players to remain
+   under 8K.
+
+[7.08]
+  * Fixed logplayer for Solaris (was broken in 7.05 by the
+    introduction of a usleep command)
+  * Coach language change: The mark and markl directives now take a
+    unum set instead of just a unum
+  * Coach language change: The ppos directive is now
+   | (ppos <TEAM> <UNUM_SET> <INT> <INT> <REGION>)
+   where the first int specifies the minimum number of players and the
+   second specifies the maximum number of players for unum_set which
+   have to be in region in order for the condition to match;
+  * Coach language change: The <POINT> type can now be relative to
+    another point, the ball, or a player.
+    <POINT> -> (pt [real] [real]) #xcoord, ycoord
+	      | (pt [real] [real] <POINT>)
+              | (pt ball)
+	      | (pt <TEAM> <UNUM>)
+  * in 7.07, a space was accidentally removed from the online coach
+    messages (right before TIME_RECEIVED_BY_SERVER). This has been
+    fixed.
+  * Removed references to SA_RESETHAND which were having no effect.
+  * Fixed setting of player type in new display/logging.
+
+[7.07]
+  * Pre V7 online coach messages to v7 and above players are quoted.
+  * Pre V7 online coach messages are sent to all players.
+  * Offline coach messages to v7 players are quoted and have coach as
+    origin (rather than referee)
+
+    A summary of audio format is
+
+      From referee
+	(hear TIME referee PLAY_MODE)
+      From offline coach
+	(hear TIME coach "MSG")
+      From pre V7 online coach (sent to all players)
+	(hear TIME online_coach_{left|right} "MSG")
+      From V7 and above online coach
+	(hear TIME online_coach_{left|right} TIME_RECEIVED_BY_SERVER CLANG_MSG)
+      From player to itself
+	(hear TIME self "MSG")
+      From player to others
+	(hear TIME DIR "MSG")
+
+
+  * The logplayer did not send server param, player param, and player
+    type messages. This has been fixed.
+  * The monitor would crash on some logfiles because stamina_max
+    seemed to be set to 0. The monitor will no longer crash this way.
+
+[7.06]
+  * Fixed a bug where version 7.xx online coach messages were never
+    sent to the right team. Thank you to Timo Steffens for finding and
+    fixing this bug.
+
+[7.05]
+  * Soccer server will now work with Windows NT/2000 with Cygwin
+    installed, though it has not been heavily tested. The logplayer
+    and monitor do not work as yet. Cygwin is available from 
+    http://cygwin.com/
+  * A bug was fixed in the sending of the coach messages. Previously,
+    quotes were put around part of messages in the standard coach
+    language. These quotes have been removed.
+  * Fixed memory leak in collision checking.
+    Thanks to Artur Merke and Andreas Hoffman for finding it at for
+    the fix.
+  * For quite some time, the logplayer has occasionally "skipped" so
+    that certain cycles were never displayed by the logplayer. This
+    seems to be caused by the logplayer sending too many UDP packets
+    for the monitor to receive. Therefore, a new parameter has been
+    added to the logplayer 'message_delay_interval'. After sending
+    that many messages, the logplayer sleeps for 1 microsecond, giving
+    the monitor a chance to catch up. This is not a guaranteed to
+    work, but it seems to help significantly. If you still have a
+    problem with the logplayer/monitor "skipping", try reducing
+    message_delay_interval from it's default value of 10. Setting
+    message_delay_interval to a negative number causes there to be no
+    delay.
+  * The server used to truncate messages received from the players and
+    coach to 128 characters before recording them in the logfile. This
+    has been fixed.
+
+
+[7.04]
+  * If a client connects with version > 7.0, all angles sent out by
+    the server are rounded instead of truncated (as they were
+    previously) This makes the error from quantization of angles
+    (i.e. conversion of floats to ints) both uniform throughout the
+    domain and two sided. This change was also made to all values put
+    into the dispinfo_t structure for the monitors and logfiles.
+  * Fixed a bug which misrecorded the the span angle in the arc region.
+  * Fixes a bug where no space was printed after send_vi_step in the
+    server_param message (thanks to Peter Stone for pointing this out) 
+
+[7.03]
+  * Added a new parameter drop_ball_time. If the play mode remains in
+    any free kick mode for one team (kick_off_{left,right},
+    corner_kick_{left,right}, free_kick_{left,right}, etc) for
+    drop_ball_time cycles, the ball will automatically be dropped. In
+    accordance with past competition rules, if the ball is in a
+    penalty area, it will be dropped on the nearest inside corner.
+    (contributed by Oliver Obst)
+  * Changes to allow the server to compile on NetBSD systems.
+  * Players now continue to receive see messages when fullstate_[lr]
+    is turned on.  
+
+[7.02]
+  * Minor modification to get compilation on Linux RedHat 7.0 systems.
+  * Fix to the server.conf file to correctly set ball_accel_max
+  * An error message is now printed if there is an unrecognized option
+    in a .conf file
+  * Fix to the coach language implementation to allow the use of named
+    actions.
+  * Fix to the coach language parsing. Previously, because of the use
+    of a static buffer, use of multiple defined things in one message
+    were incorrectly interpreted.
+  * Visual angle is server_param message is now reported in degrees
+    instead of radians. 
+  * A new command has been added to the monitor protocol:
+    (dispplayer SIDE UNUM POSX POSY ANG)
+    SIDE: 1 (for left) | -1 (for right)
+    UNUM: 1--11
+    POSX, POSY: new position, each coordinate will be divided by
+                SHOWINFO_SCALE
+    ANG: The new angle of the player, in degrees
+    (contributed by Artur Merke)
+  * Two new parameters (fullstate_l and fullstate_r) have been added
+    which enable sending the full state of the world to the players on
+    the left and right teams respectively. This is for debugging purposes
+    only, and will never be turned on in a competition. The players
+    will not receive visual information. Instead, immediately after
+    each sense_body, they will receive a string in the following format
+    (fullstate TIME (pmode MODE) (vmode QUALITY WIDTH) (score LSCORE RSCORE) 
+      (ball POSX POSY VELX VELY) 
+      (PLAYERNAME POSX POSY VELX VELY BODYANG NECKANG STAMINA EFFORT RECOVERY)
+       ...)
+    MODE: any of the normal playmodes, as well as
+    goalie_catch_ball_[lr]
+    QUALITY: high | low
+    WIDTH: narrow | normal | wide
+    NECKANG: is in the relative neck angle
+    PLAYERNAME: format is [lr]_NUM (for example: l_1, r_6)
+
+    The value of these parameters go at the end of the server_param
+    message.
+    (contributed by Artur Merke)
+    
+
+[7.01]
+  * Play stops and players are recovered every half_time cycles
+  * Score command added having the format
+	(score)
+    To which the server replies
+	(score <time> <your_score> <enemy_score>)
+  * Some cosmetic changes to coach_lang.[yh] and coach_lang_comp.[Ch],
+    including fixing a "bug" dealing with quotes in define
+    messages. The external behavior of the server should be unchanged.
+  * Fixed a bug in the count of freeform messages said by the coach
+    which caused all messages to be included in the freeform message
+    count. 
+  * Server now processes all commands from both trainer and coach
+    instead every recv_step. Previously, only the last message on the
+    socket was processed.
+  * Added two new parameters start_goal_l and start_goal_r which are
+    is the starting score of the game.
+  * Online coaches no longer hear any messages from on online coach
+    (themselves or the opponents coach)
+  * Coach and trainers connecting with version >= 7.0 get the new
+    short player format in hear messages
+    (p "TEAMNAME" num) instead of (player TEAMNAME num)
+  * Small changes to the coach language.
+    * Add a definition type for actions: (definea "[string]" ACTION) 
+    * Move the time to live value from the messages level to the token
+      level. New token format: (<TIME> <CONDITION> <DIRECTIVE_LIST)
+      Advice and info messages no longer contain the time to live.
+
+[7.00]
+  * Added support for the new coach language. The grammar can be found
+    in the file "coach_lang_grammar". For semantics, please see the
+    discussion from the coach-l list:
+    http://www.coral.cs.cmu.edu/mailman/listinfo/coach-l 
+
+	Note that now you must have flex and bison in order to compile
+	the server. These utilities can be found at 
+	http://www.gnu.org/software/bison/bison.html
+	http://www.gnu.org/software/flex/flex.html
+
+	The following parameters have been added: clang_win_size,
+	clang_define_win, clang_meta_win, clang_advice_win,
+	clang_info_win, clang_mess_delay, clang_mess_per_cycle 
+
+	Each online coach (which connects with version >= 7.0) can
+	send clang_define_win(1) define messages, clang_meta_win(1)
+	meta messages, clang_advice_win(1) advice messages, and
+	clang_info_win (1) info messages per clang_win_size(100)
+	cycles. Note that if any of the clang_*_win parameters are
+	negative, then there is no restriction on that type of
+	message. The messages are heard by the players
+	clang_mess_delay(50) cycles after being received by the
+	server.
+
+	If the play mode is not play on, clang_mess_per_cycle (1)
+	coach message(s) are sent to the players each cycles,
+	regardless of whether the clang_mess_delay time for each
+	message has elapsed. Further, messages *sent* while the play
+	mode is not play_on do not count towards the clang_*_win
+	limits.
+
+	Note that the server will always send messages to the players
+	in the same order which they were received from the coach.
+
+	The restrictions say_coach_cnt_max and say_coach_msg_size
+	still apply to "freeform" messages (see the grammar).
+
+	Further the format for the hear command of the coach has
+	change slightly, it is now
+	(hear <TIME_SENT> online_coach_{left,right} <TIME_RECEIVED> <MESSAGE>)
+
+  * Included the head angle into the display of the soccermonitor
+    (source conributed by Ken Nguyen)
+
+  * Added Hetro Player support and substitusions.
+    	
+	Player types ( 7 including default type ) are generated randomly
+	when the server starts. the random types are based on predifined
+	tradeoffs which can be adjusted from the player.conf file.
+    
+	On connecting to the server, clients (v7.0+) receive player type 
+    	information.
+    
+    	The online coach can change player types unlimited times in 
+    	before_kick_off play_mode and change player types 3 times during
+	other non-playon play_modes using the following command:
+
+	    (change_player_type <UNUM> <PLAYER_TYPE>)
+
+	where UNUM is the uniform number of the player and PLAYER_TYPE is
+	a number from 0 to 6 specifying one of the 7 player types, where
+	0 is the default player type.
+
+	The server responds to the online coach with:
+
+	    (warning cannot_sub_while_playon) 	If the play_mode is playon.
+	    (warning no_team_found)		If the coach has no team
+						( should never happen ).
+	    (warning no_subs_left)		If the coach has made it's
+						3 subs for the game.
+	    (error illegal_command_form)	If change_player_type is
+						not followed by two integers
+						and a close bracket.
+	    (warning max_of_that_type_on_field) If the player_type is not
+						the default and there are
+						3 of that type already on
+						the field.
+	    (warning no_such_player)		If there is no player with
+						that uniform number on the
+						team.
+	    (warning cannot_change_goalie)	If the coach tries to change
+						the player type of the
+						goalie.
+	    (ok change_player_type UNUM TYPE)	If the substitution was made.
+
+	The server responds to the teammates with:
+
+	    (change_player_type UNUM TYPE)
+
+	and opponents ( including opponent coach ) with:
+
+	    (change_player_type UNUM)
+
+	If substituitions are made before a client connects to the server,
+	the are advised of the substituitions made via one of the above two
+	messages for each substitution made.
+
+	The offline coach can change player types any time with the
+	following command:
+
+	    (change_player_type <TEAM_NAME> <UNUM> <PLAYER_TYPE>)
+
+	where TEAM_NAME is the name of the team on whioch the change is to
+	be made.
+
+	The server responds to the offline coach with:
+
+	    (warning no_team_found)		If the team does not exist.
+	    (error illegal_command_form)	If change_player_type is
+						not followed by a string,
+						two integers and a close 
+						bracket.
+	    (warning no_such_player)		If there is no player with
+						that uniform number on that
+						team.
+    	    (ok change_player_type TEAM UNUM TYPE)	If the substitution
+							was made.
+	
+	The server responds to teammates and opponents as usual and adivises
+	the teams coach in the same way as the team members.
+
+  * Added initalisation message for offline coaches in the following format:
+	(init (version <VER>))
+    to which to the server responds with
+	(init ok)
+    Initalising a offline coach with the new init message does not start the
+    server.
+
+  * Added start command for offline coaches using new init message, with the
+    following format:
+	(start)
+    to which the server responds with
+	(ok start)
+						
+  * Changed visual information for (online and offline) coaches connecting with version
+    7 or higher. 
+	- visual information stats with "see_global" instead of "see"
+	- Short names are used.
+	- The body and head angles have been moved to the end of the object info.  The
+	  new grammer is
+		ObjInfo ::= (ObjName Pos) |
+			    (ObjName Pos Velocity) |
+			    (ObjName Pos Velocity Angles)
+
+  * Added server_param message for players and coaches connecting with version 7 or
+    above. It has the following format:
+
+	(server_param <gwidth> <inertia_moment> <psize> <pdecay> <prand> <pweight>
+	 <pspeed_max> <paccel_max> <stamina_max> <stamina_inc> <recover_init>
+	 <recover_dthr> <recover_min> <recover_dec> <effort_init> <effort_dthr>
+	 <effort_min> <effort_dec> <effort_ithr> <effort_inc> <kick_rand>
+	 <team_actuator_noise> <prand_factor_l> <prand_factor_r><kick_rand_factor_l>
+	 <kick_rand_factor_r> <bsize> <bdecay> <brand> <bweight> <bspeed_max>
+	 <baccel_max> <dprate> <kprate> <kmargin> <ctlradius> <ctlradius_width>
+	 <maxp> <minp> <maxm> <minm> <maxnm> <minnm> <maxn> <minn> <visangle>
+	 <visdist> <windir> <winforce> <winang> <winrand> <kickable_area>
+	 <catch_area_l> <catch_area_w> <catch_prob> <goalie_max_moves> <ckmargin>
+	 <offside_area> <win_no> <win_random> <say_cnt_max> <SayCoachMsgSize>
+	 <clang_win_size> <clang_define_win> <clang_meta_win>
+	 <clang_advice_win> <clang_info_win> <clang_mess_delay> <clang_mess_per_cycle>
+	 <half_time> <sim_st> <send_st> <recv_st> <sb_step> <lcm_st> <SayMsgSize>
+	 <hear_max> <hear_inc> <hear_decay> <cban_cycle> <slow_down_factor>
+	 <useoffside> <kickoffoffside> <offside_kick_margin> <audio_dist> <dist_qstep>
+	 <land_qstep> <dir_qstep> <dist_qstep_l> <dist_qstep_r> <land_qstep_l>
+	 <land_qstep_r> <dir_qstep_l> <dir_qstep_r> <CoachMode> <CwRMode> <old_hear>
+	 <sv_st>)
+
+  * Added player_param message for players and coaches connecting with version 7 or
+    above. It has the following format:
+
+	(player_param <player_types> <subs_max>	<pt_max>
+	 <player_speed_max_delta_min> <player_speed_max_delta_max>
+	 <stamina_inc_max_delta_factor>	<player_decay_delta_min>
+	 <player_decay_delta_max> <inertia_moment_delta_factor>
+	 <dash_power_rate_delta_min> <dash_power_rate_delta_max> 
+	 <player_size_delta_factor> <kickable_margin_delta_min>
+	 <kickable_margin_delta_max> <kick_rand_delta_factor>
+	 <extra_stamina_delta_min> <extra_stamina_delta_max>
+	 <effort_max_delta_factor> <effort_min_delta_factor>)
+
+  * Added player_type message for players and coaches connecting with version 7 or
+    above. It has the following format:
+
+	(player_type <id> <player_speed_max> <stamina_inc_max> <player_decay>
+	 <inertia_moment> <dash_power_rate> <player_size> <kickable_margin>
+	 <kick_rand> <extra_stamina> <effort_max> <effort_min>)
+
+  * Added Quotation marks around the message part of a hear messege from players and
+    coaches for players and coaches connecting with version 7 or above.
+
+  * Added catch count, move count and change_view count to sense_body
+    for players connecting to version 7 with above.
+
+  * Externalised the config file reader into a generic reader which
+    is used for reading server.conf and for reading player.conf which 
+    has settings for hetro players.
+
+  * Added striplog to tools directory. 
+
+  * Added exteamname to tools directory. 
+
+  * Added tools directory.  Programs in tools directory need to be
+    explicitly compiled.
+
+  * In server.conf, changed stamina_max from 3500 to 4000,
+    stamina_inc_max from 35 to 45, kick_power_rate from 0.016 to
+    0.027, and baccel_max from 1.6 to 2.7
+
+  * Added log_times parameter to server.conf for loging ms between cycles
+
+  * Added coach commands to command log
+
+  * Added BALL_COLLIDE and PLAYER_COLLIDE to player's alive member.
+    BALL_COLLIDE signifies that the player collided with the ball.
+    PLAYER_COLLIDE signifies that the player collided with another player.
+    The monitor displays both types with a black circle around the player.
+
+  * Introduced new monitor and logging protocol
+    Monitor protocol version 2 format:
+	A repeated series of dispinfo_t2 structs specifing game state
+    
+    Only monitors connecting with:
+	(dispinit version 2)
+    will recieve data in the new format
+	
+    Logging protocol version 3 format:
+	file starts with "UGL" and version number (3), followed by a
+	a series of shorts, specifying the type of data structure and
+	the data structures specified.
+	
+	Each short specifying mode is followed by
+	i)	if mode == PM_MODE, 
+			a char specifying play mode.
+
+	ii)	if mode == TEAM_MODE, 
+			a team_t struct for the left side and
+			a team_t struct for the right side.
+
+	iii)	if mode == SHOW_MODE,
+			a short_showinfo_t2 struct specifying ball and 
+			player positions and states.
+
+	iv)	if mode == MSG_MODE,
+			a short specifying the message board,
+			a short specifying the length of the message,
+			a string containing the message.
+
+	v)	if mode == PARAM_MODE,
+			a server_params_t struct specifying the current server
+			parameters.
+
+	vi)	if mode == PPARAM_MODE
+			a player_params_t struct specifying the current hetro
+			player parameters.
+
+	vii)	if mode == PT_MODE,
+			a player_type_t struct specifying the parameters of a
+			specific player type.
+
+    Play mode is only written if the playmode changes.
+    Team data is only written if a new team connects or the score changes.
+    Server parameters are only written once at the beginning of the logfile.
+    Hetro player parameters are only written once at the beginning of the
+    logfile.
+    Player type info is only written once for each player type at the beginning
+    of the logfile.
+
+    Data Conversion:
+    Values such as x, y positions are meters multiplied by SHOWINFO_SCALE2.
+    
+    Values such as deltax, deltay are meters/cycle multiplied by 
+    SHOWINFO_SCALE2.
+ 
+    Values such as body_angle, head_angle and view_width are in radians multiplied
+    by SHOWINFO_SCALE2.
+    
+    Other values such as stamina, effort and recovery have also been multiplied by
+    SHOWINFO_SCALE2.
+
+  * Fixed logging so that the last cycle of a game is logged.
+
+  * Sense body information is now always sent to players before visual 
+    information. Previously, if a player was due to recieve visual 
+    information at the begining of a cycle the visual information would 
+    be sent before the sense body information.
+  
+  * Added missing initialization for part of sigaction structures
+    (contributed by Frank Rehberger)  
+
+[6.07]
+  (These changes were made for the evaluation session of RoboCup2000)
+  * Added a parameter kick_rand which to add noise directly to the
+    kick command of the players. It is used the same way as
+    player_rand or ball_rand
+  * Added parameters team_actuator_noise: (on/off) whether the
+    following params are used
+  * prand_factor_l, prand_factor_r: The player_rand value is
+    multiplied by this (for the left and right teams) to get the
+    actual noise level
+  * kick_rand_factor_l, kick_rand_factor_r: The kick_rand value is
+    multiplied by this (for the left and right teams) to the get the
+    actual noise level.
+
+[6.06]
+  * A new parameter 'slow_down_factor' (default 1) has been
+    added. This parameter can used to slow the server down by an
+    integer factor. Specifically, the following values are multiplied
+    by slow_down_factor after option processing: simulator_step,
+    send_step, send_vi_step, sense_body_step. Note however that this
+    parameter does *not* affect the length of half-time. The number of
+    cycles in a half is calculated as if slow_down_factor does not
+    exist.
+
+[6.05]
+  * The say_coach_cnt_max parameter now limits the number of messages
+    which the online coach can say. The parameter existed before but
+    had no effect. The online coach receives (error said_too_many_messages) 
+    if it trys to say too many messages. A value < 0 for say_coach_cnt_max
+    turns off the limit on the number of messages.
+  * If the game continues into extended_time, the online coaches are
+    given an additional say_coach_cnt_max messages to say every
+    additional 3000 cycles (or whatever the normal length game
+    is). The first additional messages are given at the start of
+    extended time. Allowed messages are cumulative.
+
+[6.04]
+  * Made the ball move immediately when the goalie issues a move
+    command after a catch. Previoulsy, the goalie could see the ball
+    in it's old location after the goalie moved.
+
+[6.03]
+  * The angle reported in the speed field of sense_body is now
+    normalized.
+  * (Also note that in the visual info, the teamname in enclosed in
+    quotes. This was present in a previous release, but was not
+    mentioned in this file)
+
+[6.02]
+  * Goalie is now identified in the visual info. This is only seen
+    only when the player's uniform number is also seen. The object
+    string in the visual info for seeing the goalie is: 
+    (p "<team_name>" <num> goalie). Visual info is unchanged
+    otherwise. This affects all clients which connect with version
+    >=6.00 
+
+[6.01]
+  * Fixed a bug that caused the server to send B instead of G for a
+    goal that was very close
+
+[6.00]
+  * The speed entry of sense_body now contains two arguments: (speed r
+    ang) where r is the magnitude of the player's velocity and ang is
+    the angle relative to the player's view angle.
+    << ") (speed " << Quantize(vel.r(), 0.01) << " " 
+    << Rad2IDeg(vel.th() - angle_body - angle_neck_committed)
+  * The visual information has been shortened. All object names are
+    now a single character long.
+	Old       New
+	flag      f
+	player    p
+	ball      b
+	line      l
+	goal      g
+    The versions with capital letters (for felt objects) are just
+    capital single letters.
+  * Added vector addition for kicks with a maximum acceleration of 1.6m/c
+  * Added a parameter goalie_max_moves (default 2) which limits the
+    number of times the goalie can move after a catch. A negative
+    parameter allows infinite moves. "(error too_many_moves)" is sent
+    to the client if it tries to move too many times.
+  * Online coach connecting with (init TeamName) now receives a (init
+    Side ok) reply. 
+  * Coach (on- or offline) can now send an (team_names) command and receives 
+    (ok team_names [(team Side1 TeamName1) [(team Side2 TeamName2)]])	
+  * Offline coach (aka trainer) can send (recover) to reset players'
+    stamina, recovery, effort and hear_capacity to the values at the
+    beginning of the game. The server replies with (ok recover).
+  * Added the following PlayMode items and a flag for player status.
+	[enum PlayMode]
+	PM_PK_{Left|Right}, PM_FirstHalfOver, PM_Pause, PM_Human,
+	PM_Foul_Charge_{Left|Right}, PM_Foul_Push_{Left|Right}, 
+	PM_Foul_MultipleAttacker_{Left|Right}, 
+	PM_Foul_BallOut_{Left|Right}
+	[player status]
+	#define LOST			0x0200
+    These additions are required from infrastructure group who
+    try to develop 3D viewer, commentator and logger for small size league.
+    The change will not affect normal behavior of Soccer Server
+    as a platform for the simulation league.
+
+[5.27]
+  * Fixed a bug which caused sensory info to be sent 4 times too often.
+  * Fixed a bug with popup windows in monitor which caused the monitor
+    to crash on some systems.
+  * For the logplayer's record mechanism, changed the length field to
+    be in network byte order
+
+[5.26]
+  * Fixed a bug where the ball would sometimes stick to a player other
+    than the goalie after a catch
+  * Fixed a bug where if the goalie ran out of bounds with the ball, a
+    corner kick or goal was not correctly assigned
+  * The length field in version 2 of the logfile is now put into
+    network byte order
+  * fixed problems with sensory information coming in 160ms intervals
+    rather than 150ms.
+  * fixed the problem that this sensory information could become out
+    of sync with the server. i.e. a 160ms (or 150ms) cycle could (in
+    some cases) become extended to 170ms or 180ms etc. whilst still
+    maintaining a 100ms simulator cycle.
+  * Fixed problems with signal being lost if the server was busy when
+    they arrived
+
+[5.25]
+  * Fix a bug that the referee sometimes misjudges "goal"s.
+	(reported by Mikhail Prokopenko and Jan Colin Murray)
+  * Parameters for quantization_step_* can be set separately for each team.
+	(for evaluation)
+
+[5.24]
+  * Fix a bug of logplayer that behaves strange way when goto mode.
+
+[5.23]
+  * Fix a bug that sense_body does not send version-4's format. 
+	(reported by Patrick. F Riley)
+  * Apply a patch contributed by Klaus Dorer to netif.C.
+    Now, the server check all messages from clients.
+
+[5.22]
+  * Fix a bug that sense_body information is sent in version-5 format
+    even if the client connects with version-4 format.
+    (reported by Patrick F Riley)
+  * Fix a bug that messages said by online-coachs are informed as
+    referee's messages.
+    Now, onlin-coaches' messages are informed as the following format:
+	(hear TIME online_coach_right MESSAGE)
+	(hear TIME online_coach_left MESSAGE)
+    (reported by Patrick F Riley and Emiel Corten)
+  * Fix a bug that the ball is hold by goalie if the 2nd half is
+    end in draw.
+    (reported by Oliver Obst)
+
+[5.21]
+  * Fix a bug that logplayer cannot be compiled on SunOS4.
+
+[5.20]
+  * Fix a bug that the goalie can not kick the ball after a catch
+    if the ball is far.
+    Now, the ball is moved to the next of the goalie after a successful catch.
+
+[5.19]
+  * The value of half_time in server.conf is corrected for 
+    the RoboCup-99's regulation.
+  * Fix a bug of logplayer. (Patched by Gerhard Sander).
+  * Add rec_msg_mode flag to the server to reduce the size of logfile 
+    (Contributed by Patrick F. Riley).
+  * Fix a bug that the server executes turn_neck commands exclusively with
+    turn, dash and kick commands.
+  * Fix a bug that some players remain in side of 9.15m from the offside line
+    after offside call (Reported Klaus Dorer).
+  * Fix a bug the server can not parse "offside_kick_margin" line
+    in "server.conf" file.
+
+[5.18]
+  * Fix a bug of neck directions and turn_neck commands.
+  * "Move" commands after catch moves the goalie and the ball
+    keeping the relative position between them.
+  * When the referee calls "offside", the server move offside players 
+    to 9.15m behind from the offside-line.  Y-position is kept.
+    (Previously, the server moved them to random position.)
+  * An offline coach can set the velocity by "move" command.
+  * Fix a bug that the server crashs in some situation.
+  * All information of "sense_body" and "see" reflects values after the server
+    commits the commands at the end of a simulation cycle.
+  * The values of stamina_max and stamina_inc_max in the default "server.conf"
+    file are set for RoboCup-99's regulations.
+  * Limit the value of turn_neck and angle_neck.
+
+[5.17]
+  * Fix a bug of behavior after goalie's catch command.
+  * Fix a bug in functions defined in utility.h.
+
+[5.16] 
+  * Fix spelling miss of "illigal".
+
+[5.15]
+  * Normal coach (not online coach) becomes to be able to use
+    "(eye on/off)" command.
+
+[5.14.1]
+  * Fix a bug that the server moves players wrong side when 
+    the second catch command occer.
+
+[5.14]
+  * Fix a bug that the server move players to wrong place at a goal kick.
+  * Fix a bug that the human referee can not take free kick during
+    a goalie catchs a ball.
+
+[5.13]
+  * -lbsd option is omited. (Oliver Obst's patch)
+
+[5.12]
+  * Fix a bug that the server does not accept "drop ball" during
+    a goalie catch a ball.
+
+[5.11]
+  * Fix a bug that coach and online-coach receives direction in radian.
+  * Fix a bug that the server coredump when a client send a turn_neck
+    immediately after establishing the connection.
+
+[5.10]
+  * Change the direct number "11" to "MAX_PLAYER" in source file
+    for generalization.
+
+[5.09]
+  * online coach can use two ways to get visual information:
+	(1) (look) protocol
+		The coach requires the information actively 
+		every time it needs.
+		As same as off-line coach, the coach client
+		sends a "(look)" command, then the server
+		returns "(ok look ...)" with all absolute positions of 
+		objects.
+	(2) (eye on/off) protocol
+		When the coach sends a "(eye on)" command,
+		then the server starts to send "(see ...)" information
+		every 100ms (the interval is specified by send_vi_step 
+		parameter) automatically to the client.
+		When the coach sends a "(eye off)" command,
+		then the server stops to send.
+  * Add new option "-redraw_player (on/off)" to soccermonitor.
+    Then soccermonitor redraw player widgets every cycle.
+    This option is for avoid a bug of XFree86 server for SVGA,
+    and it makes soccermonitor heavy.
+    So, it is better do not use this option when soccermonitor
+    works well without the option.
+
+[5.08]
+  * The server accepts "(look)" commands from on-line coach.
+  * Fix a bug that sampleclient can not be compiled on Linux.
+
+[5.07]
+  * Push out opponent players from a penalty area when
+    a goal kick occer.
+  * Goalie can use "(move X Y)" command after catching the ball.
+  * Fix a bug of the version control in sense_body information.
+  * on-line coach get visual information in "(see ...)" format 
+    rather than "(ok look ...)" format.
+  * Fix a mistake of a name of option in server.conf file.
+	(look_step -> send_vi_step)
+
+[5.06]
+  * Fix a bug that head-angle is reported in float value.
+  * Fix a bug about wrong initialization of turn_neck.
+  * Fix a bug that distance to the player is reported twice.
+  * Parameters in "server.conf" is modified for RoboCup99.
+  * On-line coach mode is added.
+    In order to start on-line coach,  
+	* An on-line coach client sends "(init team-name)" to 
+	  the port 6002/UDP of the server.
+ 	* The client can use "(look)" and "(say)" commands.
+	  "(look)" command returns with visual information.
+ 	  "(say)" command broadcase the message to the all player client.
+	* Also, the coach client can use "(say)" commands
+  * An on-line coach receives information about positions of players and
+    ball in absolute coodinate system (x-y coordinate system).
+  * An on-line coach become not to use "move" and "change-mode" commands.
+
+[5.04]
+  * Version Control
+  * Fix the offside bug that the server moves players to the wrong side.
+  * Add information about player's body- and head-direction and velosity 
+    into data that a coach client gets.
+  * Sense-body information sends every 100ms.  
+    The interval is able to be modified by command-line option "-???"
+  * Fix a bug that head-angle is reported in radian.
+
+[5.03]
+  * Fix a bug that the server reports head_angle in radiants.
+  * Fix a bug that the server move players to wrong place after offside call.
+
+[5.02]
+  * Fix the bug that offensive players move into offside areas when
+    offside is called by the referee.
+  * Fix the bug that players can not move before kickoff.
+  * Fix the bug that (turn_neck Angle) commands turns wrong directon of angle.
+    (In the regulation, Angle should be positive value when he/she will
+    turn his/her neck right.)
+  * Fix the bug that inconsistency about angles of lines.
+  * `sense_body' information includes the following information:
+	* the number of executed turn_neck commands.
+		(turn_neck XXX)
+	* the angle of head relative to the body.
+		(head_angle XXX)
+  * Format about players in visual information are changed as follows:
+
+	((player TEAM UNUM) Distance Direction DistChng DirChng 
+		BodyFacingDir HeadFacingDir)
+
+[5.01]
+  * Operation after offside call is modified.
+	When offside is called,  offending players inside of 9.15m from
+	the ball and in the offside area are moved back to onside area.
+  * Clearance at goal-kicks is modified.
+	When goal-kick, all offending player can not enter the penalty area.
+	The play-mode does not turn to play-on until the ball goes out
+	of the penalty area.
+  * All body commands (turn, dash, kick, and catch) have its effects
+    at the end of simulation cycle.
+
+[5.00]
+  * Neck is introduced.
+	A player have a neck.
+	A client can use "(turn_neck ANGLE)" command to turn the neck.
+	ANGLE is added to the current neck-angle.
+	possible neck-angle is [-90,90] (parameterized)
+	The neck-angle is relative to the direction of body,
+	so that when a client "(turn X)", then the view angle also
+	turns X degrees. 
+	A client can use "neck" commands with turn, dash, kick in the same
+	simulation cycle.
+  * Backward Dash
+	A player can dash backword more powerful (for example, (dash -100)),
+	but consumes doubled stamina.
+  * sense_body
+	Sense_body information is sent automatically in every 100ms.
+
+[4.21]
+  * Shuffle the order of recv_from for of clients to equalize chances
+    of kicking ball.
+  * When the soccerserver runs with "-send_log off" option, then 
+    the server does not send information about communication between 
+    the server and clients to soccermonitors.
+    This option reduces network trafic.
+  * When the soccermonitor runs with "-eval on" option, then
+    the server runs as evaluation mode.  In the evaluation mode,
+    a user can discard a player from the pull-down menu on the monitor.
+
+[4.20]
+  * Fix a bug reported by David Andre about drop-ball.
+  * Official Version used in RoboCup98 Paris
+
+[4.19]
+  * Fix a bug in offside judgement reported by Milind Tambe.
+
+[4.18]
+  * Fix a bug that the server does not accept second player in team-r.
+  * Fix a typo reported by soccer@cs-gw.utcluj.ro. 
+
+[4.17]
+  * Fix a bug of judging offside and its restart-position.
+  * Install team `bench's.
+    Now, 11 players of each team are standing at their bench 
+    even before (init) commands are received.
+    When the server receives a (bye) command, it move the player
+    to the bench.
+  * The server does not receive (reconnect) commands in play-on mode.
+  * Fix a bug in the definition of ReducedDashPower(p).
+  * The server saves rediced-size logfile.  This algorithm is 
+    contributed by Mr. Klaus Dorer (klaus@cognition.iig.uni-freiburg.de).
+    You can select the old format of logfile and Klaus's format by
+    a new option "-record_version [1|2]", where '1' is old format and
+    '2' is Klaus's format.
+
+[4.16]
+  * Offside is called in the following condition.
+	+ An offside player aproachs to the ball in 9.15m.
+	+ The offside player is the nearest player in the offending team.
+  * When offside is called, the server restarts the match from 
+    the nearest point on the offside line from the position where
+    the offside player was when the passer kicked the ball.
+  * Add the following flags about collision to the protocol from 
+    soccerserver to soccermonitor:
+
+	dinfo.body.show.pos[i].enable = PLAYER_TO_BALL (0x40)
+					BALL_TO_PLAYER (0x80)
+
+[4.15]
+  * Fix a bug that the server does not disconnect correctly when "(bye)"
+    command is received.
+
+[4.14]
+  * Inertia moment parameter (IMPARAM in source of the previous version)
+    becomes a command-line parameter named "inertia_moment".
+  * Reduce double definition of 'turn()' method for MPObject class and 
+    Player class.  Now, only Player class has 'turn()' method.
+  * Fix the bug that a player initialized by version 3 can not see
+    players initialized by version 4.
+  * The referee restarts a match after 'offside' from position 
+    where the offending player was when the passer kicked the ball.
+  * Add play-modes for offside.
+    When 'offside' occers, the server changes the playmode to "offside_l"
+    or "offside_r" (referee's message), and suspend the match 3 seconds,
+    with a popup window, and restart the match.
+    The following new options are introduced:
+	-offside_label_width WIDTH
+	-offside_label_font FONT
+  * Change the name of an option "-print_goal" to "-popup_msg".
+    When "-popup_msg on", the server displays both popup windows of
+    "Goal!!" and "Offside!".  Else, the server does not use popup windows.
+    Default is "on".
+  * New option "-ball_file FILE", which specifies the file of a bitmap 
+    picture of ball, is introduced.
+  * Soccermonitor display kicking players with double circle,
+    and catching goalies with filled circle.
+  * Goalies are displayed different color.
+    You can specify the color by "-goalie_l_color COLOR" and
+    "-goalie_r_color COLOR" option.
+  * Protocol from soccerserver to soccermonitor is changed as follow:
+	dinfo.body.show.pos[i].enable = DISABLE     (0x00)
+					STAND       (0x01)
+					KICK        (0x02)
+					KICK_FAULT  (0x04)
+					GOALIE      (0x08)
+					CATCH       (0x10)
+					CATCH_FAULT (0x20)
+    Actual value is bit-or of these information.
+  * Fix the bug that re-connected players can not be seen in monitor
+    when the player disconnected by a "(bye)" command.
+  * Equation about stamina written in [4.00] is wrong.
+	    /* consume stamina by dash */
+	     effective_dash_power = effort * dash_power
+	     stamina -= effective_dash_power
+    should be
+	    /* consume stamina by dash */
+	     effective_dash_power = effort * dash_power
+	     stamina -= fabs(dash_power) 
+
+[4.13]
+  * Small modification was done just for distribution.
+
+[4.12]
+  * Used RoboCup Japan Open 98.
+  * When offside rule is applied, the server restarts the game
+    from the point where the offside player received the ball.
+    In the previous implementation, the server restarts the game
+    from the point where the passer kicked the ball.
+  * Change configure script.
+    If the new configure script does not work well, please use
+    configure2 script that is the same as the old configure script.
+
+[4.11]
+  * Fix the condition of offside.  The correct offside position is:
+	(1) between the center line and the opponent goal line.
+	(2) between the ball and the opponent goal line.
+ 	(3) between the second defender and the opponent goal line.
+
+[4.10]
+  * Fix the following bug of checking offside.
+    The server judged offside even if a player try to do free-kick,
+    corner-kick, etc.
+  * Change the name of option 'permit_kick_off_offside' to 
+    'forbit_kick_off_offside'.
+
+[4.09]
+  * Use Xlib instead of Xt to display players and ball in soccermonitor.
+    So, soccermonitor becomes light so that even laptop machines can
+    display soccermonitor without fricker.
+
+[4.08]
+  * New command line option "-verbose [on/off]" is introduced.
+    Then soccerserver is invoked with "-verbose on" then
+    the server reports some trouble-messages like "recvfrom error".
+    If "-verbose off" then the server does not reports such warning.
+    The default is "off".
+
+[4.07]
+  * Corrct the positions of flags of goal-posts.
+    In version 4.06 and before, the positions is calculated from
+    constant value of default goal width rather than the parameter in
+    "server.conf" file.
+
+[4.06] 
+  * Fit the code to calculate actual kick-power to the description
+    in [4.02] of this list.  This was pointed out by Peter Stone.
+
+[4.05]
+  * Fix a bug that 'move' command does not work in version 4.04.
+
+[4.04]
+  * Speed value in sense_body is quantized by 0.01.
+  * New flags introduced in version 4 are invisible for clients 
+    who init by version 3.0.
+  * Fix a bug some value in 'see' information becomes NaN.
+  * Fix a bug of stamina model.
+  * Clients can not specify goalie mode or version at 'reconnect'.
+  * Null char is written '\000' instead of 'NULL'.
+  * The server warns when a client use too long teamname in 'init'.
+  * '-nowindow' and '-nw' for logplayer' option are the same.
+  * The server does not return '(error unknow_command)' when
+    a client sends more than one command in a simulation cycle.
+
+[4.03a,b]
+  * Fix a bug of configure.
+  * Fix a bug to fail to compile server/field.C.
+  * Fix a bug in scanning init command.
+  * Change the formula to decide kick_power_rate as follows:
+	kick-power-rate := max-kick-power-rate *
+			(1 -
+			 0.25 * |dirDiference|/180 -
+			 0.25 * (distBallPlayer - BallSize - PlayerSize)/
+			 	kick_margin)
+  * No window mode of logplayer.
+    When logplayer is invoked with -nowindow option,
+    it start without window and accept commands from the standard input.
+    Possible commands are as follows:
+		play [FROM] [to TO]
+			Play from FROM to TO in normal speed.
+			If FROM > TO, it plays backword.
+			FROM and TO should be integer, 'here'(current counter),
+			or 'end' (last of the log).
+		feed to TO
+			Feed forward until TO.
+			When TO is less than the current counter,
+			It rewind to TO. 
+		feed {+|-}COUNT
+			Feed {+|-}COUND steps. 
+		jump to TO
+			Jump to TO without displaying.
+		jump {+|-}COUNT
+			Jump to {+|-}COUNT without displaying.
+		step [COUNT]
+			play COUNT steps.
+		sleep SECOND
+			sleep SECOND seconds.
+			SECOND should be positive integer or forever. 
+		quit
+			quit and finish loplayer.
+  * Fix a small bug of X interface in logplayer.
+
+[4.03]
+  * The server parse `init' command more correctly.
+  * Reform the configure script.
+  * Fix minor bugs in logplayer.
+
+[4.02]
+  * Kick command accerelate the velosity of the ball rather than sets it.
+  * Maximum ball speed is introduced.
+	max_ball_speed = 32
+    When the ball speed becomes larger than this, the speed is reduced
+    to this maximum speed.
+    Player also have a maximum speed. 
+  * 'kick_power_rate' is calculated in the following way.
+	kick-power-rate := max-kick-power-rate * (1 -
+                   0.25 *  |dirDifference|/180 -
+                   0.25 * distBallPlayer / controlRadiusWidth
+
+     where
+	  dirDifference := the angle between the view direction of the
+        	           player and the ball position
+
+	  distBallPlayer := the distance between the edge of the player
+	                    and the ball
+	  controlRadiusWidth := control_radius - player_size
+  * 'sense_body' information includes the following information:
+	(kick KICK_COUNT)
+	(dash DASH_COUNT)
+	(turn TURN_COUNT)
+	(say SAY_COUNT)
+    Each of them tell how many commands are executed.
+  * `goalie_catch_probability', the probability that a goalie succeed 
+    to catch the ball by a catch command is introduced. (default is 1)
+
+[4.01]
+  * Minor change of logplayer window.
+
+[4.00]
+  [Major Changes]
+  * Version control by init command.
+    When a client connects the server with '(init TEAMNAME (version 4.00))',
+    the server uses the new protocols for the client.
+    If the client sends only '(init TEAMNAME)' then the server uses
+    the old (version 3.2x) protocol.
+  * Goalie
+    When a client connects the server with '(init TEAMNAME (goalie)',
+    the client becomes a goalies.  The goalie can use '(catch DIR)' command
+    that enable to capture the ball in the following rectangle area:
+
+			    ___
+		**********   |
+		G*********   W   ---> DIR
+		**********   |
+			    ~~~
+		|<---L--->|   
+    where 
+	W : GOALIE_CATCHABLE_AREA_W (default 1)
+	L : GOALIE_CATCHABLE_AREA_L (default 2)
+    The goalie can not use catch commands GOALIE_CATCH_DEC cycles after
+    it uses a catch command.
+    Only a goalie is available in a team.
+  * Kick command set the ball velocity rather than accelerate it.
+  * A new command, 'sense_body', which tells internal status of a player
+    in the following way:
+	(sense_body) -> 
+		(sense_body TIME (view_mode QUALTY WIDTH)
+				 (stamina STAMINA EFFORT)
+				 (speed AMOUNT_OF_SPEED)) 
+  * The server executes one of kick, turn or dash command in a simulation
+    cycle.
+    Other commands (say, change_view, sense_body) are executable in the same
+    cycle.
+  * Offside rule is introduced.
+    The algorithm is as follows:
+	(1) When a player of team-X kick a ball,
+	    players of team-X in offside position are
+	    marked ``offside''.
+	(2) When a player marked ``offside'' try to kick the ball,
+	    the referee judges ``offside!!''.
+	(3) ``offside'' mark is cleared by each effective kick.
+    where, `offside options' is:
+	(1) in the opponent side
+	(2) between the ball and the opponent goal line
+	(3) between the second defending player and the goal line.
+    The user can turn off this offside rule by '-use_offside off' option.
+  * Long term stamina is introduced as follows
+    /* recover-stamina phase */
+     if( stamina <= 0.3*max_stamina ){
+       if( recovery <= 0.1 ){
+         /* do nothing */;
+       else
+         recovery -= .05;
+     if( stamina <= 0.4*max_stamina ){
+       if( effort <= 0.1 )
+          /* do nothing */;
+       else
+          effort -= .05;
+     if( stamina >= 0.9*max_stamina ){
+       if( effort >= 1.0 ){
+         /* do nothing */;
+       else
+         effort += .05;
+     stamina += recovery * maximum_recovery
+
+    /* consume stamina by dash */
+     effective_dash_power = effort * dash_power
+     stamina -= effective_dash_power
+  * New Landmarks
+	center mark	(flag c)	
+	goal posts	(flag g l t)	left-top
+			(flag g l b)	left-bottom
+			(flag g r t)	right-top
+			(flag g r b)	right-bottom
+	flags outside of the pitch
+			(flag TB LR XX)
+			(flag LR TB YY)
+				TB ::= [t|b]
+				LR ::= [l|r]
+				XX ::= [10|20|30|40|50]
+				YY ::= [10|20|30]
+			(flag TBLR 0)	
+				TBLR ::= [t|b|l|r]
+		These flags are located at 5 meter outside from the
+		edge of the pitch. 
+		For example, (flag t l 20) is 5 meters above from the top 
+		touch line and 20 meters left from the center line.
+		In the same way (flag r b 10) is 5 meters right from the right
+		goal line and 10 meters below from the center of right goal.
+		In the similar way, (flag b 0) is 5 meters below from the 
+		midpoint of bottom touch line, and (flag l 0) is 5 meters 
+		left from the center of the left goal.
+ * Default visual sensing time is 150ms.
+ * Visual information about a player tells its facing direction
+   in the following format.
+     ((player TEAMNAME UNUM) DISTANCE DIRECTION DISTCHANGE DIRCHANGE FACEDIR)
+   where FACEDIR is the relative facing direction.
+   For example, 
+
+	P=>	<=Q		... Q's FACEDIR is 180
+	
+	P=>	Q		... Q's FACEDIR is 90
+		v
+
+  [Minor Changes]
+  * Fix a bug that stamina increase when a player dashs with negative power.
+  * If the server is invoked with '-permit_kick_off_offside off' option,
+    the server does not permit for players to enter the opponent sides.
+
+[3.32]
+  * UDP port number used in logplayer is changed by -port PORT option.
+
+[3.31]
+  * The following drawing facility is added to soccermonitor.
+    	- draw point
+	- draw line
+	- draw circle
+  * Delete all code for Motif.
+
+[3.30]
+  * Stepwise replay functions is added to 'logplayer'.
+  * Refine the interface of logplayer.
+  * Kickable margin (1.0m) becomes a parameter that can be specifiled
+    in a conf file for soccerserver.
+
+[3.29]
+  * A logfile includes informaiton about communication between clients and 
+    the server when soccerserver is invoked with '-record_log on' option.
+    If you need not the information in the log file (only for information
+    about locations of players and the ball), the server should be invoked
+    with '-record_log off' option.
+  * Logplayer accepts multiple monitor.
+
+[3.23--3.28] (These modification was done on site of RoboCup-97 :-)
+  * Force players in their own sides before kick-off.
+  * Change to use larger fonts.
+
+[3.22a]
+  * Fix a typo in monitor/field.C
+
+[3.22]
+  * Fix a bug that the server does not record a log file when no monitor 
+    is running.  [contributed by William Webber, RMIT]
+	
+[3.21]
+  * A small change in pop-up window when a team get a goal.
+
+[3.20]
+  * Stamina and hear_capacity is refleshed at the begining of 
+    the 2nd half.	
+
+[3.19]
+  * The file of image on the field is changable by -mark_file_name
+    option.  Default file is "mark.xbm".
+
+[3.18]
+  * A radius of kickable area was decided by constants in previous 
+    versions.  Now, the radius is decided actual parameters of
+    ball_size and player_size.
+
+[3.17]
+  * Now, an image appears on the field.  By default, RoboCup logo appears.
+    The image file is monitor/mark.xbm.
+    You can turn off this facility by specifying "print_mark off" option
+    on the command line or configulation file for soccermonitor.
+  * When a team gets a goal, a popup menu labeled "Goal!!".
+    You can turn off this facility by specifying "print_goak off" option
+    on the command line or configulation file for soccermonitor. 	
+
+[3.16]
+  * Small change in popuping foul menu.
+
+[3.15]
+  * Fix a bug repoted by Sean Luke.  The bug is:
+	In 3.13 and earlier versions a negative number will cause the server
+	to incorrectly do time_over after a goal is made. This is because it
+	is comparing the current time with the (negative) half_time time, and
+	the current time is much greater, so it thinks the game is over.
+
+[3.14]
+  * Small modification of soccermonitor to avoid the bug (maybe) of X11R5.
+    soccermonitor becomes to use XtSetVaue() instead of XtMoveWidget(). 
+
+[3.13]
+  * Fix a bug that the server does not keep out defending players from the 
+    center circle when the server already receives some "kick" commands.
+
+[3.12]
+  * Add an option of "drop_ball" in foul menu that pop-ups when
+    an user clicks a mouse on the field.  When you choose "drop_ball",
+    then:
+	(1) The referee announce "drop_ball" to all player.
+ 	(2) It moves the ball to the mouse cursor.
+	(3) Players are moved to keep 9.15m away from the ball.
+	(4) The referee restarts the match. 
+  * The margin of corner kick (default is 1m) becomes to be modified
+    by command-line options or the configuration file.
+    The name of the option is "ckick_margin".
+
+[3.11]
+  * Change the format of pop-up menu when an user clicks a mouse on 
+    the field. 
+  * The point to restart a match by a corner-kick is changed to 
+    (1m,1m) inside from the corner.  
+
+[3.10]
+  * Fix a bug of the foul menu introduced in version 3.09.  The bug
+    is that the server core-dumps when a user click out of the field.
+
+[3.09]
+  * The process to take a foul by a human referee is changed.
+    Previously, the human referee must click on a player who does foul.
+    Now, the human referee clicks at the point on the field where the 
+    game restarts.  Then a menu pop-ups and select a team that will
+    do a free-kick.
+
+[3.08]
+  * Player's "hear_capacity" becomes to recover constantly 
+    when the simulation clock stops before a match, during half-time,
+    and after a goal.  Previously, hear_capacity recovered only when
+    simulation clock was running, so that, players could not communicate
+    with each other after a goal, for example.  Now,  players can 
+    communicate during such out-of-play time.
+
+[3.07]
+  * A player becomes to be able to hear its own message without
+    exhausting its hearing capacity. 
+    So, the player can hear a message from a teammate just after saying
+    something.
+
+[3.06]
+  * Fix a bug that a player can kick a ball after a goal.
+    Now, players can never kick a ball for 5 seconds between a goal 
+    and the next kick-off.
+  * Fix a bug that the server sometimes accepts more than one command in
+    one simulation cycle (100ms).
+    Now, the server accepts one command in one simulation cycle at most.
+
+[3.05]
+  * "logplayer" becomes to support X11R5.
+  * In order to make sure to set the velocity of the ball to zero,
+    the server moves the ball to the center mark at the end of first half.
+  * The value of goal_width in "monitor.conf" is now 14.02, which is
+    consistent value in "server.conf".
+  * Revise "sserver" shell script to set LD_LIBRARY_PATH and the path of 
+    tcsh correctly.
+  * "soccermonitor" becomes to support X11R5 correctly.
+
+[3.04]
+  * Fix a bug of "XtDestroyApplicationContext" problem in
+    soccermonitor for Solaris.
+  * Fix a bug of zero-divide problem in relative movement values in 
+    visual information.  Version 3.03 sometimes sends the following 
+    visual information.
+
+	(see 0 ((goal r) 52.5 0) .... ((ball) 0 0 NaN NaN) ...
+
+    In some platforms, the server core-dumps because of the same reason.
+    Now, this problem is fixed.
+  * Change Makefile in order not to make logplayer in the case of X11R5,
+    because logplayer does not support X11R5.
+  * The server moves players into their own side at kick-off if they are 
+    in the opponent side.
+  * Quantization unit for dir_change becomes small, so that clients
+    can know more detailed information about relative movements.
+  * Fix a bug of information about near-objects.
+    In version 3.03, information about near-objects (objects near to the 
+    player and out of view-cone) includes dist_change and dir_change.
+    This is not fit to the regulation for RoboCup-97.  Now, the server
+    only sends distance and direction about near-objects.
+  * Change the value of kick_power_rate in server.conf from 0.02 to 0.013,
+    because a player can shoot the ball to a goal from the center circle
+    in the previous setting.
+
+[3.03]
+  * The server becomes to inform about relative movements
+    of flags and goals in visual information.
+
+[3.02]
+  * The following bug is fixed.
+	The server coredumps when move two objects to the same place.
+
+  * The server ignores 'kick' commands 5 seconds after a goal, which
+    is the period that players go back to their home position.	
+
+[3.01]
+  * The following bug is fixed.
+	Information about relative movements of objects in the "see"
+	information is wrong.  Even if the player and objects stop,
+	"see" information returns non-zero values of DistChange and 
+	DirChange.
+  * The following bug is fixed.
+	The server controls the players' capacity of hearing message
+	in the wrong way.  
+
+[3.00]
+  * The format each object in 'see' information is changed as following.
+	(ObjName Distance Direction DistChange DirChange)
+    where DistChange and DirChange mean amount of changes of Distance
+    and Direction respectively.
+  * Quantize step for visual and movable objects (players and the ball)
+    is now 0.1 rather than 0.01.  This means that the accuracy of 
+    the distance information is low when the object is far from the player.
+  * The player can see all objects that is within 3m from the player.
+    In this case, the player can know the type , the distance and the 
+    direction of the object, but can not know the name of the object.
+    Actually, the player gets the following information.
+
+	(ObjType Distance Direction)
+	ObjType ::= (Flag) | (Ball) | (Goal) | (Player)
+  * During 5 seconds between a goal and kick-off, the client can use
+    'move' commands to come back home. 
+
+[2.93]
+  * Stamina is treated in the same scale as power parameters in dash commands.
+    Previously, the stamina was treated in the scale of power multiplied
+    a small constant.
+  * Each player can hear N messages during M simulation cycles.
+    N and M is decided from the parameter `hear_max', `hear_decay' 
+    and `hear_inc' as follows:
+	M = (hear_max)/(hear_inc)
+	N = (hear_max)/(hear_decay)
+    This limitation is effective only for messages from players.
+    The player always can hear messages from the referee.
+
+[2.92] 
+  * The process after a team gets a goal is changed as follow:
+
+	(1) The referee broadcasts "goal_SIDE_POINT".
+	(2) During 50 simulation steps, the player must return its own side
+	    to restart the game.  During this interval, the clock is stopped
+ 	    and the ball stays in the goal.
+	(3) If players are in the opponent side after the interval,  
+	    the referee move them into their own side randomly. 
+	(4) The referee broadcasts "kick_off_SIDE".
+  * The wind brows to the reverse direction in the second half.
+    This means it seems that two teams exchange the side excepts the 
+    name of landmarks.
+  * 'soccermonitor' displays the field upside down in the second half.
+    This change is only in 'soccermonitor', but there is no change 
+    in 'soccerserver'.  Therefore, you need not change the client
+    at the halftime.
+
+[2.91]
+  * Two new features 'BLANK' and 'RECORD' is added to `logplayer'. 
+    These feature are useful for editing the logfile.  Start logplayer
+    as following:
+
+	% logplayer LOGFILE -out NEWLOGFILE
+
+    Then, you can make new log file (=NEWLOGFILE) by pushing RECORD button.
+
+  * A new command "(bye)" for clients.  When a client sends "(bye)" to
+    the server, the server deletes its player from the field.
+
+[2.90]
+  * A new utility, logplayer, is included.  Using this, you can replay a
+    logfile of soccerserver.  It can play, pause, feed-forward and rewind
+    like video.  The usage of logplayer is:
+
+	% logplayer LOGFILE
+	
+  * The main script 'sserver' is modified for tcsh.
+  * A player can see all lines in its view.  Previously, the player can see 
+    only the nearest line.  Now, the player can see two lines when it is 
+    out of the pitch and facing to the pitch.
+  * A message from a player is informed only to players with a certain 
+    distance from the player.  The distance is specified by 
+    'audio_cut_dist' in "server.conf" or a command line-options.
+    Messages from the referee and the coach is informed to all players. 
+  * Little change of the alignment of bottoms in the window.  
+
+[2.89]
+  * When the ball is stopping (the velocity is less than BALL_T_VEL(=0.001)),
+    the value of VDirection of the ball in the "see" information is -360.
+    The client becomes to be able to detect the ball is moving or stopping.
+  * The weather (wind) factor is implemented.  The wind forces objects 
+    (ball and players) to accelerate a certain direction.  The parameters of
+    the wind is:
+
+	wind_force	(0 -- 100) 	The power of the wind
+	wind_dir	(-180 -- 180) 	The direction of the wind
+	wind_rand	(0 -- 100)	The degree of the change of direction
+					during a match
+     These parameters are specified in the "server.conf" or options
+     in a command line.  The server also permits the following options:
+	
+	-wind_none		Ignore wind factor.
+	-wind_random		Set these parameters randomly
+
+     In addition to it, the following new parameter about the weight of 
+     objects is introduced.
+
+	ball_weight	(default 0.2)
+	player_weight   (default 60.0)
+
+[2.88]
+  * Add a converter of recorded log file of communication between 
+    soccerserver and soccermonitor into the package.  The converter is
+    under the directory recfile_change.  The usage is,
+
+	% recfile_change log_in_old_format log_in_new_format
+
+    It supports reverse conversion like
+
+	% recfile_change -old log_in_new_format log_in_old_format
+
+[2.87]
+ * A coach client receives hear messages in the same format as players
+   receive.  If the server invoked with -old_coach_hear, it receives
+   the old format.
+ * Communication between soccerserver and soccermonitor becomes machine
+   independent.  
+
+[2.86]
+ * The small changes for preRoboCup. Please ignore.
+   (If compile soccerserver with -DWRONG_LINE_VIEW option, 
+    the server sends visual information about lines in the old format
+    (before Ver. 2.83).) 
+
+[2.85]
+ * The size of goal that soccermonitor displays becomes changeable.
+   If you starts soccermonitor with -goal_width option like:
+
+	% soccermonitor -goal_width 14.64
+   then the goal displayed in the specified width.
+ * Avoid a bug of XtVaSetValues function in old X11R5. 
+   Some old version of X11R5 has buggy XtVaSetValues function.
+   So, the program use XtMoveWidget rather than the function 
+   In the case of X11R5.
+ * Do call signal() function before setitimer() function.
+   This change is to avoid that the server sometimes 
+   terminates by ALARM signal. 
+ * When a player is judged FOUL by mouse, the player is moved 9.15m
+   away from the ball automatically.
+
+
+[2.84]
+ * Fix the bug that a client receive wrong visual information about lines
+   when the player is out of the field.
+ * Change over-writing log files rather than appending them.
+
+[2.83]
+ * Add a new option to record and replay process of a match.
+   When a soccerserver is invoked with the following options,
+   the server saves data for soccerdisplay into a specified logfile.
+	% soccerserver -record LOGFILE
+   Then, soccerserver replays the process of the match by invoked
+   as follows:
+	% soccerserver -replay LOGFILE
+ * Support IRIX 5.
+
+[2.82]
+ * Add a new option to save log-file of messages between the server
+   and clients.
+   When soccerserver is invoked with the following options,
+   messages (control-commands and sensor-informations) are saved
+   into a specified log file.
+	% soccerserver -log_file LOGFILE
+
+[2.81]
+ * Team colors becomes changeable.  
+   When soccermonitor is invoked with the following options,
+   each team is displayed with the specified color.
+	% soccermonitor -team_l_color "purple" -team_r_color "blue"
+ * Fix the bug that the referee judges wrong goal. 
+
+[2.80]
+ * Fix the bug that the server core-dumps when no players entry and 
+   the match ends. 
+ * Fix the bug that a match sometimes does not suspend at the half-time
+   and the time-up.
+ * Fix the bug the server returns error for coach's change_mode command.
+
+[2.79]
+ * Fix the bug that the monitor goes down when the server receives
+   too long messages. 
+
+[2.78a]
+ * Correct the value of half_time parameter.
+
+[2.78]
+ * Add noise to MOMENT parameter in 'turn' command.
+ * Change the referee's message string "entyo" to "time_extended",
+   which is broadcast when the second half ends in a draw. 
+ * Fix a bug that a match is sometimes not suspended when the half time
+   comes.
+ * Fix a bug that the referee sometimes calls a goal when the ball
+   goes out from the side line.
+
+[2.77]
+ * Fix a bug of judgment of goal.
+   In the version 2.76, the server sometimes judges the right side team
+   gets a score even when the left side team gets a goal.
+
+[2.76]
+ * The port number for a coach client becomes modifiable by a configuration
+   file for soccerserver. ('coach_port' option)
+ * The server starts to use a more precise algorithm of judging a goal.
+   Previously, the server judges a goal when the ball is in a goal-region
+   after it moves.  Now, the server judges a goal when the ball cross a
+   goal line between goal posts.
+
+[2.75]
+ * Parameters of move commands change to mean relative position.
+   In other words, (move -10 -10) means left-forward in both cases of
+   left and right teams.
+ * Maximum length of message in say and hear commands can be specified
+   by a command line option or configuration file.
+
+[2.74]
+ * The server becomes to execute only one command per player in a 
+   simulation cycle. 
+
+[2.73]
+ * Execute XFlush every cycle.
+ * Support Linux.
+ * Include Peter's config file.
+
+[2.72]
+ * Execute Xflush everytime when each player changes the position.
+ * Support NEWS-OS 4.2.1R
+ * Fix a bug of change_view. 
+
+[2.71]
+ * Add -coach_w_referee mode.
+ * Change the format of "see" information when the low-quality is specified
+   by change_view commands.
+	(OBJNAME DIR [VDIR]) -> (OBJNAME DIR)
+
+[2.70]
+ * Change the name of flags to fit to the description in the manual. 
+	(flag [t|b])   -->  (flag c [t|b])
+ * Polish up Makefile
+ * Fix the bug that soccermonitor does not display log of communications.
+ * Fix the bug that the server core-dumps when the 22nd client connects
+   with the server.
+ * Fix the bug that the server can not read the configuration files.
+
+
+ 

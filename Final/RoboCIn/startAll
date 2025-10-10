@@ -1,0 +1,8 @@
+#!/bin/bash
+
+unum=1
+while [ $unum -le 13 ]; do
+  bash start "127.0.0.1" . $unum &
+  sleep 0.2
+  unum=`expr $unum + 1` 
+done

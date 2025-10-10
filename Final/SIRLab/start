@@ -1,0 +1,43 @@
+#!/bin/sh
+
+HOST=$1
+BASEDIR=$2
+NUM=$3
+port=6000
+Port=6002
+if [ -z "$LD_LIBRARY_PATH" ]
+then
+        LD_LIBRARY_PATH=.
+else
+        LD_LIBRARY_PATH=.:$LD_LIBRARY_PATH
+fi
+
+export LD_LIBRARY_PATH
+
+teamname="SIRLab"
+
+player="./sample_player"
+coach="./sample_coach"
+
+config="./player.conf"
+coach_config="./coach.conf"
+config_dir="./formations-dt"
+
+opt="--player-config ${config} --config_dir ${config_dir}"
+opt="${opt} -h ${HOST} -t ${teamname} -p ${port}"
+coachopt="--coach-config ${coach_config} --use_team_graphic on"
+coachopt="${coachopt} -h ${HOST} -t ${teamname} -P ${Port}"
+
+cd $BASEDIR
+
+case $NUM in
+    1)
+        $player $opt -g
+        ;;
+    12)
+        $coach $coachopt
+        ;;
+    *)
+        $player $opt
+        ;;
+esac
