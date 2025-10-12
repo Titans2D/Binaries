@@ -1,1 +1,0 @@
-/usr/bin/clang++ -W -Wall -g CMakeFiles/sample_coach.dir/sample_freeform_message.cpp.o CMakeFiles/sample_coach.dir/sample_coach.cpp.o CMakeFiles/sample_coach.dir/main_coach.cpp.o -o sample_coach  -Wl,-rpath,/usr/local/lib /usr/local/lib/librcsc.so /usr/lib/x86_64-linux-gnu/libboost_system.so.1.74.0 /usr/lib/x86_64-linux-gnu/libz.so 
