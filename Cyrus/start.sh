@@ -9,7 +9,9 @@ echo " All rights reserved."
 echo "******************************************************************"
 
 
-LIBPATH=/usr/local/lib
+DIR=`dirname $0`
+
+LIBPATH="${DIR}/lib"
 if [ x"$LIBPATH" != x ]; then
   if [ x"$LD_LIBRARY_PATH" = x ]; then
     LD_LIBRARY_PATH=$LIBPATH
@@ -18,8 +20,6 @@ if [ x"$LIBPATH" != x ]; then
   fi
   export LD_LIBRARY_PATH
 fi
-
-DIR=`dirname $0`
 
 player="${DIR}/sample_player"
 coach="${DIR}/sample_coach"
