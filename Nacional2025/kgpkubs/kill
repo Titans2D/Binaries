@@ -1,0 +1,15 @@
+#!/bin/sh
+
+# Tournament kill script for KgpKubs2D
+# Generated automatically by generate_tournament_package.sh
+
+player="KgpKubs2D_player"
+coach="KgpKubs2D_coach"
+
+killall -TERM ${player} 2>/dev/null || true
+killall -TERM ${coach} 2>/dev/null || true
+
+sleep 2
+
+killall -KILL ${player} 2>/dev/null || true
+killall -KILL ${coach} 2>/dev/null || true

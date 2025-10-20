@@ -1,0 +1,99 @@
+#!/bin/sh
+
+# Tournament start script for KgpKubs2D
+# Generated automatically by generate_tournament_package.sh
+# Based on Cyrus2D/Helios base start script
+
+# Parse command line arguments
+HOST=${1:-localhost}
+BASEDIR=${2:-.}
+NUM=${3:-0}
+
+# Change to base directory first
+cd $BASEDIR
+
+# Library path setup (after changing directory)
+LIBPATH=./lib
+if [ x"$LIBPATH" != x ]; then
+  if [ x"$LD_LIBRARY_PATH" = x ]; then
+    LD_LIBRARY_PATH=$LIBPATH
+  else
+    LD_LIBRARY_PATH=$LIBPATH:$LD_LIBRARY_PATH
+  fi
+  export LD_LIBRARY_PATH
+fi
+
+# Team configuration
+player="./src/KgpKubs2D_player"
+coach="./src/KgpKubs2D_coach"
+teamname="KgpKubs2D"
+port=6000
+coach_port=6002
+
+player_conf="./src/player.conf"
+config_dir="./src/formations-dt"
+coach_conf="./src/coach.conf"
+team_graphic="--use_team_graphic on --team_graphic_file ./src/team_logo.xpm"
+
+number=11
+usecoach="true"
+unum=0
+
+sleepprog=sleep
+goaliesleep=1
+sleeptime=0
+
+# Build player options
+opt="--player-config ${player_conf} --config_dir ${config_dir}"
+opt="${opt} -h ${HOST} -p ${port} -t ${teamname}"
+
+# Handle specific player number (tournament mode)
+if [ $NUM -gt 0 ]; then
+    case $NUM in
+        1)
+            # Goalie
+            $player ${opt} -g
+            ;;
+        12)
+            # Coach
+            coachopt="--coach-config ${coach_conf}"
+            coachopt="${coachopt} -h ${HOST} -p ${coach_port} -t ${teamname}"
+            coachopt="${coachopt} ${team_graphic}"
+            $coach ${coachopt}
+            ;;
+        *)
+            # Regular player
+            $player ${opt}
+            ;;
+    esac
+else
+    # Full team mode (NUM=0 or not specified)
+    echo "Starting full team: ${teamname}"
+    
+    # Start goalie first
+    echo "Starting goalie..."
+    $player ${opt} -g &
+    $sleepprog $goaliesleep
+    
+    # Start field players (2-11)
+    i=2
+    while [ $i -le ${number} ] ; do
+        echo "Starting player ${i}..."
+        $player ${opt} &
+        $sleepprog $sleeptime
+        i=`expr $i + 1`
+    done
+    
+    # Start coach
+    if [ "${usecoach}" = "true" ]; then
+        echo "Starting coach..."
+        coachopt="--coach-config ${coach_conf}"
+        coachopt="${coachopt} -h ${HOST} -p ${coach_port} -t ${teamname}"
+        coachopt="${coachopt} ${team_graphic}"
+        $coach ${coachopt} &
+    fi
+    
+    echo "Team ${teamname} started successfully!"
+    echo "Players: 11, Coach: ${usecoach}"
+    echo "Use './kill' to stop all processes"
+fi
