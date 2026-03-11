@@ -1,0 +1,30 @@
+{
+	"_comment": "Pimentao_Verde: config base da equipa (formação, risco, set plays). Modificações em relação ao base CYRUS.",
+	"Strategy": {
+		"Formation": "523",
+		"TeamTactic": "Normal",
+		"MoveBeforeSetPlay": true
+	},
+	"ChainAction": {
+		"ChainNodeNumber": 1000,
+		"ChainDeph": 2,
+		"UseShootSafe": true,
+		"DribblePosCountLow": 0.7,
+		"DribblePosCountHigh": 0.8,
+		"DangerEvalForward": [32, 26, 20, 14, 10, 6, 2, 0, 0, 0, 0, 0, 0, 0, 0],
+		"DangerEvalPenalty": [12, 9, 6, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+		"SlowPass": false,
+		"TryFindOneKickPassOppClose": true
+	},
+	"OffensiveMove": {
+		"Is9BrokeOffside": false,
+		"UnmarkingAlgorithms": ["main", "voronoi"],
+		"UseThPassSimInVoroScape": true
+	},
+	"DefenseMove": {
+		"StartMidMark": -25.0,
+		"BackBlockMaxXToDefHPosX": 6.0,
+		"GoToDefendX": true,
+		"FixThMarkY": true
+	}
+}
