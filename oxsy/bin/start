@@ -1,0 +1,27 @@
+#!/bin/sh
+
+HOST=$1
+BASEDIR=$2
+NUM=$3
+port=$4
+coach_port=$5
+
+player="./bin/oxsyplayer"
+coach="./bin/oxsycoach"
+
+opt="-server_ip ${HOST} -player_port ${port}"
+coach_opt="-server_ip ${HOST} -coach_port ${coach_port}"
+
+cd $BASEDIR
+
+case $NUM in
+    1)
+        $player $opt -goalie
+        ;;
+    12)
+        $coach $coach_opt
+        ;;
+    *)
+        $player $opt
+        ;;
+esac
