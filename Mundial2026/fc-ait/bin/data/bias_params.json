@@ -1,0 +1,204 @@
+{
+    "version": 1.1,
+    "forward_weight": 3.871792297974082,
+    "y_bias": 5.827019339102196,
+    "offside_bonus": 333.8972521710421,
+    "opp_close_threshold": 7.356030683197366,
+    "opp_close_penalty": 42.01095826008942,
+    "opp_safe_bonus": 7.083974945370959,
+    "base_offset": 1017.569194830404,
+    "epv_aux_scale": 9432.87098703291,
+    "epv_aux_cap": 22.01327047015229,
+    "through_pass_min_move_dist": 7.391713534306992,
+    "intercept_margin_step": 2,
+    "early_break_margin_step": 4,
+    "control_area_buf": 0.6054840329370457,
+    "dash_dist_bonus_near": 0.7519081873095608,
+    "dash_dist_bonus_far": 0.5286591314517283,
+    "cross_control_area_buf": 0.3748685199379669,
+    "cross_dash_dist_factor": 1.1023737948721273,
+    "cross_minus_bonus": 186.5198835153288,
+    "sf_ball_x_thr": 27.666432114648366,
+    "sf_pocket_x": 38.37200456916,
+    "sf_pocket_y": 14.052157315139942,
+    "sf_attraction_range": 11.357573101490868,
+    "sf_offside_margin": 1.5844104677441775,
+    "strategy_update_interval": 1500,
+    "opponent_style_min_samples": 30,
+    "opponent_pass_min_move_dist": 0.01,
+    "opponent_formation_min_gap_m": 3.0,
+    "opponent_formation_detect_cycle": 1,
+    "opponent_formation_default_slug": "433",
+    "opponent_formation_patterns": [
+        {
+            "name": "4-4-2",
+            "lines": [
+                4,
+                4,
+                2
+            ],
+            "conf_slug": "442"
+        },
+        {
+            "name": "3-5-2",
+            "lines": [
+                3,
+                5,
+                2
+            ],
+            "conf_slug": "352"
+        },
+        {
+            "name": "4-2-3-1",
+            "lines": [
+                4,
+                2,
+                3,
+                1
+            ],
+            "conf_slug": "4231"
+        },
+        {
+            "name": "3-4-3",
+            "lines": [
+                3,
+                4,
+                3
+            ],
+            "conf_slug": "343"
+        },
+        {
+            "name": "4-1-4-1",
+            "lines": [
+                4,
+                1,
+                4,
+                1
+            ],
+            "conf_slug": "4141"
+        },
+        {
+            "name": "5-4-1",
+            "lines": [
+                5,
+                4,
+                1
+            ],
+            "conf_slug": "541"
+        },
+        {
+            "name": "4-3-1-2",
+            "lines": [
+                4,
+                3,
+                1,
+                2
+            ],
+            "conf_slug": "4312"
+        },
+        {
+            "name": "4-3-3",
+            "lines": [
+                4,
+                3,
+                3
+            ],
+            "conf_slug": "433"
+        },
+        {
+            "name": "5-3-2",
+            "lines": [
+                5,
+                3,
+                2
+            ],
+            "conf_slug": "532"
+        }
+    ],
+    "ant_w1": 1.0,
+    "ant_w2": 1.0,
+    "ant_w3": 1.0,
+    "ant_lambda": 0.5,
+    "ant_mu": 0.5,
+    "deep_w_u11": 2.0,
+    "deep_w_u9": 3.0,
+    "rcv_w_dash": 0.05,
+    "defensive_x_weight": 0.7134467921037912,
+    "linebreak_bonus": 0.0,
+    "linebreak_depth_gain": 0.0,
+    "linebreak_margin": 3.0,
+    "linebreak_min_advance": 3.0,
+    "linebreak_max_absy": 20.0,
+    "shoot_distance_bonus": 3.0,
+    "shoot_angle_bonus": 0.0,
+    "shoot_gk_distance_bonus": 0.0,
+    "shoot_pa_inside_multiplier": 1.0,
+    "wallbreak_side_bonus": 0.0,
+    "markbreak_free_bonus": 0.0,
+    "openrecv_bonus": 0.0,
+    "openrecv_min_dist": 3.0,
+    "openrecv_dist_cap": 6.0,
+    "openrecv_x_min": 0.0,
+    "openrecv_back_slack": 2.0,
+    "box_guard_ball_x_max": -25.0,
+    "box_guard_goal_dist": 20.0,
+    "box_guard_y_max": 20.0,
+    "box_guard_free_dist": 3.5,
+    "box_guard_max_dev": 15.0,
+    "box_guard_offset": 1.2,
+    "box_guard_fb_band": 1.0,
+    "shotq_promote_dist_max": 13.0,
+    "shotq_promote_angle_min": 55.0,
+    "shotq_promote_x_min": 36.0,
+    "shotq_promote_bonus": 3.0,
+    "shotq_promote_cap": 5.0,
+    "shotq_damp_dist_min": 16.0,
+    "shotq_damp_angle_max": 35.0,
+    "shotq_damp_penalty": 2.5,
+    "linebreak_depth_gain_mult": 1.0,
+    "coach_mark_enable_line": 0.0,
+    "coach_mark_enable_mark": 0.0,
+    "coach_mark_enable_wall": 0.0,
+    "coach_mark_enable_default": 0.0,
+    "coach_mark_situation_ema_alpha": 0.05,
+    "coach_mark_slow_push_vx_max": 0.3,
+    "coach_mark_ball_speed_max": 0.4,
+    "coach_mark_opp_own_min": 3.0,
+    "coach_mark_central_min": 3.0,
+    "epv_aux_scale_mult_line": 0.4,
+    "epv_aux_scale_mult_mark": 1.0,
+    "epv_aux_scale_mult_wall": 1.0,
+    "epv_aux_scale_mult_default": 1.0,
+    "_score": 0.25,
+    "_v9_note": "v9 per-type evaluator (2026-07-01): top-level keys are DEFAULT. per_type.{LINE,MARK,WALL,DEFAULT} overrides any field of BiasParamsCore. Unspecified keys inherit DEFAULT. Legacy epv_aux_scale_mult_{line,mark,wall,default} are routed into per_type[X].epv_aux_scale_mult for back-compat.",
+    "per_type": {
+        "LINE": {
+            "epv_aux_scale_mult": 0.4,
+            "linebreak_depth_gain": 12.0,
+            "linebreak_depth_gain_mult": 1.0,
+            "shoot_distance_bonus": 4.5,
+            "shoot_gk_distance_bonus": 2.0,
+            "shoot_pa_inside_multiplier": 1.3,
+            "coach_mark_central_min": 5.0,
+            "deep_sweep_enabled": 1.0
+        },
+        "MARK": {
+            "epv_aux_scale_mult": 1.0,
+            "markbreak_free_bonus": 18.0,
+            "shoot_distance_bonus": 3.0,
+            "shoot_angle_bonus": 1.5,
+            "shoot_pa_inside_multiplier": 1.5,
+            "coach_mark_central_min": 2.0,
+            "deep_sweep_enabled": 1.0
+        },
+        "WALL": {
+            "epv_aux_scale_mult": 0.7,
+            "wallbreak_side_bonus": 0.8,
+            "shoot_distance_bonus": 3.0,
+            "shoot_pa_inside_multiplier": 1.2,
+            "coach_mark_central_min": 3.0,
+            "deep_sweep_enabled": 0.0
+        },
+        "DEFAULT": {}
+    }
+}

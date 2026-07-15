@@ -1,0 +1,35 @@
+{
+	"_comment": "Rinobot vs TitasDaRobotica — tempo regulamentar: mais chute, menos medo na chain. Penaltis usam outro modulo.",
+	"Strategy": {
+		"Formation": "352",
+		"TeamTactic": "Normal",
+		"MoveBeforeSetPlay": true
+	},
+	"ChainAction": {
+		"ChainNodeNumber": 1500,
+		"ChainDeph": 3,
+		"UseShootSafe": false,
+		"DribblePosCountLow": 0.85,
+		"DribblePosCountHigh": 0.92,
+		"DribbleAlwaysDanger": false,
+		"DribbleAlwaysDangerExceptPrioritiseDribble": false,
+		"UseOneVsOneFeint": true,
+		"DangerEvalBack": [45, 38, 32, 22, 18, 14, 10, 6, 4, 2, 0, 0, 0, 0, 0],
+		"DangerEvalMid": [42, 35, 28, 18, 10, 6, 4, 2, 1, 0, 0, 0, 0, 0, 0],
+		"DangerEvalForward": [14, 10, 7, 4, 2, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+		"DangerEvalPenalty": [8, 5, 3, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+		"SlowPass": false,
+		"TryFindOneKickPassOppClose": false
+	},
+	"OffensiveMove": {
+		"Is9BrokeOffside": true,
+		"UnmarkingAlgorithms": ["main", "voronoi"],
+		"UseThPassSimInVoroScape": true
+	},
+	"DefenseMove": {
+		"StartMidMark": -22.0,
+		"BackBlockMaxXToDefHPosX": 5.0,
+		"GoToDefendX": true,
+		"FixThMarkY": true
+	}
+}

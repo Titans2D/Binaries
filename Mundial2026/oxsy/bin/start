@@ -1,0 +1,50 @@
+#!/bin/sh
+VERSION="${VERSION:-C++}"
+
+HOST=$1
+BASEDIR=$2
+NUM=$3
+PORT=$4
+TEAM=${5:-${TEAM:-Oxsy}}
+FORMATION=${6:-$FORMATION}
+STRATEGY=${7:-$STRATEGY}
+
+if [ "$NUM" = "12" ]; then
+    PORT=${PORT:-6002}
+else
+    PORT=${PORT:-6000}
+fi
+
+case "$VERSION" in
+    GO|Go|go)
+        FORMATION="${FORMATION:-strategy/4-3-3.conf}"
+        STRATEGY="${STRATEGY:-strategy/strategy.conf}"
+        LOG_DIR="${LOG_DIR:-log}"
+        dbg=""; [ -n "$DEBUG" ] && dbg="-debug"
+        player="./bin/oxsy_player"
+        coach="./bin/oxsy_coach"
+        player_opt="-host ${HOST} -port ${PORT} -team ${TEAM} -formation ${FORMATION} -strategy ${STRATEGY} -log-dir ${LOG_DIR} ${dbg}"
+        coach_opt="-host ${HOST} -port ${PORT} -team ${TEAM} -formation ${FORMATION} -log-dir ${LOG_DIR} ${dbg}"
+        ;;
+    *)
+        STRATEGY="${STRATEGY:-config/oxsysoccer.conf}"
+        player="./bin/oxsyplayer"
+        coach="./bin/oxsycoach"
+        player_opt="-team_name ${TEAM} -server_ip ${HOST} -player_port ${PORT} -oxsy_soccer_path ${STRATEGY}"
+        coach_opt="-team_name ${TEAM} -server_ip ${HOST} -coach_port ${PORT} -oxsy_soccer_path ${STRATEGY}"
+        ;;
+esac
+
+cd $BASEDIR
+
+case $NUM in
+    1)
+        $player $player_opt -goalie
+        ;;
+    12)
+        $coach $coach_opt
+        ;;
+    *)
+        $player $player_opt
+        ;;
+esac

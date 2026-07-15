@@ -1,0 +1,14 @@
+#!/bin/bash
+#
+# Stop every KETE process started by ./start (players + coach).
+# Output is discarded so nothing is written to stdout/stderr.
+#
+cd "$(dirname "$(readlink -f "$0")")" 2>/dev/null || true
+
+pkill -f "$(pwd)/sample_player" >/dev/null 2>&1
+pkill -f "$(pwd)/sample_coach"  >/dev/null 2>&1
+# fall back to the plain binary names in case of relative-path launches
+pkill -f "sample_player" >/dev/null 2>&1
+pkill -f "sample_coach"  >/dev/null 2>&1
+
+exit 0

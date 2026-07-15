@@ -1,0 +1,30 @@
+#! /bin/bash
+
+HOST="localhost"
+HOMEDIR=`dirname $0`
+
+cd $HOMEDIR
+
+./start ${HOST} ${HOMEDIR} 1 6000 &
+sleep 1
+./start ${HOST} ${HOMEDIR} 2 6000 &
+sleep 1
+./start ${HOST} ${HOMEDIR} 3 6000 &
+sleep 1
+./start ${HOST} ${HOMEDIR} 4 6000 &
+sleep 1
+./start ${HOST} ${HOMEDIR} 5 6000 &
+sleep 1
+./start ${HOST} ${HOMEDIR} 6 6000 &
+sleep 1
+./start ${HOST} ${HOMEDIR} 7 6000 &
+sleep 1
+./start ${HOST} ${HOMEDIR} 8 6000 &
+sleep 1
+./start ${HOST} ${HOMEDIR} 9 6000 &
+sleep 1
+./start ${HOST} ${HOMEDIR} 10 6000 &
+sleep 1
+./start ${HOST} ${HOMEDIR} 11 6000 &
+sleep 1
+./start ${HOST} ${HOMEDIR} 12 6002 &

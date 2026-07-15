@@ -1,0 +1,3 @@
+#!/bin/sh
+pkill -f './sample_player' 2>/dev/null || true
+pkill -f './sample_coach' 2>/dev/null || true

@@ -1,0 +1,6 @@
+#!/bin/sh
+killall -TERM sample_player
+killall -TERM sample_coach
+sleep 2
+killall -KILL sample_player
+killall -KILL sample_coach

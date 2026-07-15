@@ -1,0 +1,32 @@
+{
+	"_comment": "Perfil Rinobot ao jogar CONTRA TitasDaRobotica (nome exato no servidor). Substitui pimentao_verde.json via teams.conf.",
+	"Strategy": {
+		"Formation": "433",
+		"TeamTactic": "Normal",
+		"MoveBeforeSetPlay": true
+	},
+	"ChainAction": {
+		"ChainNodeNumber": 1000,
+		"ChainDeph": 2,
+		"UseShootSafe": false,
+		"DribblePosCountLow": 0.75,
+		"DribblePosCountHigh": 0.85,
+		"DribbleAlwaysDangerExceptPrioritiseDribble": false,
+		"UseOneVsOneFeint": true,
+		"DangerEvalForward": [40, 34, 28, 22, 16, 10, 5, 2, 0, 0, 0, 0, 0, 0, 0],
+		"DangerEvalPenalty": [12, 9, 6, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+		"SlowPass": false,
+		"TryFindOneKickPassOppClose": false
+	},
+	"OffensiveMove": {
+		"Is9BrokeOffside": false,
+		"UnmarkingAlgorithms": ["main", "voronoi"],
+		"UseThPassSimInVoroScape": true
+	},
+	"DefenseMove": {
+		"StartMidMark": -25.0,
+		"BackBlockMaxXToDefHPosX": 6.0,
+		"GoToDefendX": true,
+		"FixThMarkY": true
+	}
+}

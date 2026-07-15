@@ -1,0 +1,113 @@
+#!/bin/sh
+# =============================================================================
+# FC-AIT per-player launcher (SS2DTM ワーカー)
+#   - start.sh から `start <host> <dir> <unum>` の形で 1..11 + coach(12) と
+#     12 回呼ばれる。1 回の呼び出しで 1 エージェントだけを前景起動する。
+#     (helios-base / 全対戦相手 cyrus・HELIOS・Oxsy・YuShan と同一の起動規約)
+#   - ★ここを all-in-one 化してはならない: start.sh が本スクリプトを NUM 付きで
+#     12 回呼ぶため、all-in-one だと 12×(11+coach)=144 プロセスに膨れて崩壊する
+#     (2026-07-02: 公式サーバー起動テストが 600s タイムアウトした真因)。
+#   - レギュレーション遵守: 実行中に stdout / stderr へ一切出力しない
+#     (全プロセスの出力を /dev/null へリダイレクト、echo は行わない)。
+# =============================================================================
+
+# --- 採用済機構 env (2026-06-28 SUBMIT-v5 ベース) -----------------------------
+# - FCAIT_COACH_MARK: 中央ゲートマーク (sample_coach.cpp YGATE=17、FRA -0.23 失点改善)
+# - FCAIT_EPV: EPV ONNX 推論 ON。非同期スレッド、cmaes_best params (B-48)。
+#              R15/R16 検証で 5 相手平均 +0.18 gd 改善 (CYRUS+0.54, YuShan+0.42, FRA+0.39)
+# - FCAIT_CLASSIFIER: 対戦相手 type 検出 + AdaptiveFieldEvaluator (v7-rev7c c-B1)
+#                    LINE 検出時のみ EPV×0.4 で抑制、他は 1.0 (副作用ゼロ保証)
+# - FCAIT_DEEP_SWEEP: 最深 CB スイープ (v8b 以降の全採用構成に含まれる)
+export FCAIT_COACH_MARK=1
+export FCAIT_COACH_MARK_YGATE=17
+export FCAIT_EPV=1
+export FCAIT_CLASSIFIER=1
+export FCAIT_DEEP_SWEEP=1
+# - FCAIT_PER_TYPE_NEUTRAL: per_type 棄却残置値の中立化 (epv_aux_scale_mult のみ適用。20260703 A/B: OLDF比 CYRUS+0.17/FRA+0.48/ITA+0.29)
+export FCAIT_PER_TYPE_NEUTRAL=1
+# - FCAIT_BOX_GUARD: 自陣ボックス際フリーマンへの自律単独マーク (20260703 採用: ノーマーク失点41→25%、対照比 CYRUS+0.33/FRA+0.36/ITA+0.02、HEL/YUS回帰なし)
+export FCAIT_BOX_GUARD=1
+# --- 純粋バグ修正 env (BESTPP アーム, 2026-07-03) ------------------------------
+# - FCAIT_FORTRESS_NOCATCH_BP: GK が味方の最終キックボールを手でキャッチ -> back_pass
+#   反則 -> PA 角 indirect FK 失点、という自滅を根絶 (推定誤検知は足クリア=安全側)。
+# - FCAIT_FORTRESS_NOGKPASS: 自陣でのパス受け手候補から GK を除外し、戻しパス起点の
+#   back_pass 反則を二重に防ぐ。いずれも env 未設定時は bit-exact (挙動変更なし)。
+export FCAIT_FORTRESS_NOCATCH_BP=1
+export FCAIT_FORTRESS_NOGKPASS=1
+
+# --- LEAD_BUNKER アーム env (BESTPP-SQ+LEAD_BUNKER, 2026-07-04) ----------------
+# - FCAIT_SHOTQ: シュート選択の質レバー (promote/damp)。
+# - FCAIT_LEAD_BUNKER: 先制 (our>their) 直後から試合終了まで失点リスクを最小化して
+#   1-0 を守り切るモード。DM(7,8) を DF ライン+10m へ縦圧縮、SF/CF(9,10,11) の前線を
+#   x<=+10 へ下げ後方の数的優位を作り、リード中はセットプレー再開を常に遅延させる。
+#   通常時 (同点・ビハインド) は BESTPP の攻撃を維持。env 未設定時は bit-exact。
+export FCAIT_SHOTQ=1
+export FCAIT_LEAD_BUNKER=1
+
+# --- Day3 大会失点分析 カットバック守備アーム (F2 + F5, 2026-07-05) ---
+# 大会 Day3 失点13/20 が ワイド→カットバック→中央フィニッシュ (M1)。以下2レバーで対処。
+# F1 (DZ_CLEAR 包囲脱出クリア) は本ビルドでは意図的に無効 (未焼き込み)。
+# - F2 FCAIT_BOX_GUARD_GOALSIDE: BOX_GUARD のフリー判定を「ゴール側の味方のみカバー」に。
+#   後方トレーリング(1.5〜5m)を誤って"マーク済"扱いし発動しなかった M1核心(RC-B)を修正。
+export FCAIT_BOX_GUARD_GOALSIDE=1
+# - F5 FCAIT_GK_CUTBACK_STEP: GK をワイド深部局面で中央カットバック受領帯へ先回り (反応
+#   でなく先回りでタイミングの壁を回避)。FCAIT_GK_CUTBACK_X 既定 -45.0。
+export FCAIT_GK_CUTBACK_STEP=1
+# - DEEP_SHIFT FCAIT_DEEP_SHIFT: 守備時(自陣+非保持)にアウトフィールド(2-11)の基準
+#   位置を数m自ゴール側へ平行移動しブロック全体を深く圧縮 (カットバック失点削減)。
+#   x は -48 でクランプ。GK(1)は対象外。0/未設定でビット一致 no-op。
+#   [ノックアウト版では無効化] 深いシフトは攻撃を殺すため通常攻撃 + 終盤全員攻撃を優先。
+#   [WIDE_RECOVER アーム] deep-shift の代わりに wide-recover を検証するため無効化。
+export FCAIT_DEEP_SHIFT=3
+
+# --- WIDE_RECOVER アーム: サイド突破側 SB/MF の深部ワイド全力帰陣 (2026-07-05) ---
+# Day3 失点13/20 = ワイド→深部byline→中央カットバック。相手がサイドを自陣で前進し
+# ボールが当該守備者を追い越した瞬間、その サイド のワイド守備者(2-8)が
+# 深部ワイド守備点 (x=FCAIT_WIDE_RECOVER_X 既定-38, y=ボール側12〜20m) へ全力スプリント帰陣し
+# byline 到達前にカットバックのパスコース上流を塞ぐ。
+# FCAIT_WIDE_RECOVER_Y 既定16.0 (|ball.y|>この値でワイド) / _X 既定-38.0。0/未設定でビット一致。
+# export FCAIT_WIDE_RECOVER=1
+
+# --- ノックアウト戦: 終盤ビハインド全員攻撃 (BEHIND_PUSH, 2026-07-05) ---
+# 0-1 負け = 0-6 負け (両者敗退)。残り時間わずか (cycle>=4500) で 1..2 点差ビハインド時のみ
+# 全フィールドプレイヤーの home を +X (既定 5.0m) 前方へ、GK も cycle>=5300 で押し上げ、
+# 引分 (→PK 勝ち)/勝ちを狙う。同点/リード時は通常の陣形を維持。0/未設定でビット一致 no-op。
+export FCAIT_BEHIND_PUSH=1
+
+# --- 引数 (start.sh が host / dir / unum を渡す) -------------------------------
+HOST=${1:-127.0.0.1}
+DIR=${2:-$(dirname "$0")}
+NUM=${3:-0}
+teamname="FC-AIT"
+
+# --- ライブラリパス (同梱 .so: librcsc / onnxruntime) -------------------------
+LIBPATH="${DIR}/lib"
+if [ x"$LD_LIBRARY_PATH" = x ]; then
+  LD_LIBRARY_PATH="$LIBPATH"
+else
+  LD_LIBRARY_PATH="$LIBPATH:$LD_LIBRARY_PATH"
+fi
+export LD_LIBRARY_PATH
+
+player="${DIR}/sample_player"
+coach="${DIR}/sample_coach"
+player_conf="${DIR}/player.conf"
+coach_conf="${DIR}/coach.conf"
+config_dir="${DIR}/formations-dt"
+
+PORT=6000
+COACH_PORT=6002
+
+player_opt="-h ${HOST} -p ${PORT} -t ${teamname}"
+player_opt="${player_opt} --player-config ${player_conf} --config_dir ${config_dir}"
+
+coach_opt="-h ${HOST} -p ${COACH_PORT} -t ${teamname}"
+coach_opt="${coach_opt} --coach-config ${coach_conf} --config_dir ${config_dir}"
+coach_opt="${coach_opt} --use_team_graphic on"
+
+# --- 起動 (1 エージェントのみ前景起動。出力は /dev/null へ抑制) ---------------
+case $NUM in
+  1)  $player ${player_opt} -g  >/dev/null 2>&1 ;;   # ゴールキーパー
+  12) $coach  ${coach_opt}      >/dev/null 2>&1 ;;   # コーチ
+  *)  $player ${player_opt}     >/dev/null 2>&1 ;;   # フィールドプレイヤー
+esac
