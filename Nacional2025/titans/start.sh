@@ -21,8 +21,8 @@ if [ x"$LIBPATH" != x ]; then
   export LD_LIBRARY_PATH
 fi
 
-player="${DIR}/sample_player"
-coach="${DIR}/sample_coach"
+player="${DIR}/titans_player"
+coach="${DIR}/titans_coach"
 teamname="TitasDaRobotica"
 host="localhost"
 port=6000
