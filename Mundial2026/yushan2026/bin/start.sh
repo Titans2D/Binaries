@@ -36,59 +36,87 @@ sleeptime=0.5
 posnum=0
 count=12
 
-
 usage()
 {
-cat << EOF
-Usage: $0  [options]
-    
-Options:
-	-help               Show help infomation
-	-h      (IP)        Special server host address
-	-p      (port)      Special the server port number of player
-	-t      (Name)      Special teamname
-	-c      (number)    Special player amount(start with 1)
-	-n      (number)    Special player position number(Not uniform)
-EOF
+  (echo "Usage: $0 [options]"
+   echo "Available options:"
+   echo "      --help                   prints this"
+   echo "  -h, --host HOST              specifies server host (default: localhost)"
+   echo "  -p, --port PORT              specifies server port (default: 6000)"
+   echo "  -P  --coach-port PORT        specifies server port for online coach (default: 6002)"
+   echo "  -t, --teamname TEAMNAME      specifies team name"
+   echo "  -n, --number NUMBER          specifies the number of players"
+   echo "  -u, --unum UNUM              specifies the uniform number of players"
+   echo "  -C, --without-coach          specifies not to run the coach"
+   echo "  -f, --formation DIR          specifies the formation directory"
+   echo "  --team-graphic FILE          specifies the team graphic xpm file"
+   echo "  --offline-logging            writes offline client log (default: off)"
+   echo "  --offline-client-mode        starts as an offline client (default: off)"
+   echo "  --debug                      writes debug log (default: off)"
+   echo "  --debug_DEBUG_CATEGORY       writes DEBUG_CATEGORY to debug log"
+   echo "  --debug-start-time TIME      the start time for recording debug log (default: -1)"
+   echo "  --debug-end-time TIME        the end time for recording debug log (default: 99999999)"
+   echo "  --debug-server-connect       connects to the debug server (default: off)"
+   echo "  --debug-server-host HOST     specifies debug server host (default: localhost)"
+   echo "  --debug-server-port PORT     specifies debug server port (default: 6032)"
+   echo "  --debug-server-logging       writes debug server log (default: off)"
+   echo "  --log-dir DIRECTORY          specifies debug log directory (default: /tmp)"
+   echo "  --debug-log-ext EXTENSION    specifies debug log file extension (default: .log)"
+   echo "  --fullstate FULLSTATE_TYPE   specifies fullstate model handling"
+   echo "                               FULLSTATE_TYPE is one of [ignore|reference|override].") 1>&2
 }
 
-
-if [ $# -eq 1 -a "$1" = "-help" ]
-then
-    usage
-    exit 0
-fi
-
-
-while getopts "h:p:t:c:n:" flag
+while [ $# -gt 0 ]
 do
-    case "$flag" in
-    h)
-        host=$OPTARG
-    ;;
-    p)
-        port=$OPTARG
-        coach_port=$((port+2))
-    ;;
-    t)
-        teamname=$OPTARG
-    ;;
-    c)
-        count=$OPTARG
-    ;;
-    n)
-        posnum=$OPTARG
-    ;;
-    *)
-    	echo "Error cmdline option"
-    	usage
-    	exit 1
-    esac
+  case $1 in
+
+    --help)
+      usage
+      exit 0
+      ;;
+
+    -h|--host)
+      if [ $# -lt 2 ]; then
+        usage
+        exit 1
+      fi
+      host="${2}"
+      shift 1
+      ;;
+
+    -p|--port)
+      if [ $# -lt 2 ]; then
+        usage
+        exit 1
+      fi
+      port="${2}"
+      shift 1
+      ;;
+
+    -P|--coach-port)
+      if [ $# -lt 2 ]; then
+        usage
+        exit 1
+      fi
+      coach_port="${2}"
+      shift 1
+      ;;
+
+	*)
+      echo 1>&2
+      echo "invalid option \"${1}\"." 1>&2
+      echo 1>&2
+      usage
+      exit 1
+      ;;
+  esac
+
+  shift 1
 done
 
-
 opt="${opt} -h ${host} -p ${port} -t ${teamname}"
-coachopt="${coachopt} -h ${host} -p ${coach_port} -t ${teamname}"
+coachopt="${coachopt} -h ${host} -P ${coach_port} -t ${teamname}"
+
 
 
 # the limit of core dump file size 

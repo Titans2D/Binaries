@@ -1,0 +1,1040 @@
+/home/titas-2d/Binaries/Mundial2026/rinobot/bin/sample_player: error while loading shared libraries: librcsc.so.18: cannot open shared object file: No such file or directory
+/home/titas-2d/Binaries/Mundial2026/rinobot/bin/sample_player: error while loading shared libraries: librcsc.so.18: cannot open shared object file: No such file or directory
+/home/titas-2d/Binaries/Mundial2026/rinobot/bin/sample_player: error while loading shared libraries: librcsc.so.18: cannot open shared object file: No such file or directory
+/home/titas-2d/Binaries/Mundial2026/rinobot/bin/sample_player: error while loading shared libraries: librcsc.so.18: cannot open shared object file: No such file or directory
+/home/titas-2d/Binaries/Mundial2026/rinobot/bin/sample_player: error while loading shared libraries: librcsc.so.18: cannot open shared object file: No such file or directory
+/home/titas-2d/Binaries/Mundial2026/rinobot/bin/sample_player: error while loading shared libraries: librcsc.so.18: cannot open shared object file: No such file or directory
+/home/titas-2d/Binaries/Mundial2026/rinobot/bin/sample_player: error while loading shared libraries: librcsc.so.18: cannot open shared object file: No such file or directory
+/home/titas-2d/Binaries/Mundial2026/rinobot/bin/sample_player: error while loading shared libraries: librcsc.so.18: cannot open shared object file: No such file or directory
+/home/titas-2d/Binaries/Mundial2026/rinobot/bin/sample_player: error while loading shared libraries: librcsc.so.18: cannot open shared object file: No such file or directory
+/home/titas-2d/Binaries/Mundial2026/rinobot/bin/sample_player: error while loading shared libraries: librcsc.so.18: cannot open shared object file: No such file or directory
+/home/titas-2d/Binaries/Mundial2026/rinobot/bin/sample_player: error while loading shared libraries: librcsc.so.18: cannot open shared object file: No such file or directory
+/home/titas-2d/Binaries/Mundial2026/rinobot/bin/sample_player: error while loading shared libraries: librcsc.so.18: cannot open shared object file: No such file or directory
+/home/titas-2d/Binaries/Mundial2026/rinobot/bin/sample_player: error while loading shared libraries: librcsc.so.18: cannot open shared object file: No such file or directory
+/home/titas-2d/Binaries/Mundial2026/rinobot/bin/sample_player: error while loading shared libraries: librcsc.so.18: cannot open shared object file: No such file or directory
+/home/titas-2d/Binaries/Mundial2026/rinobot/bin/sample_player: error while loading shared libraries: librcsc.so.18: cannot open shared object file: No such file or directory
+/home/titas-2d/Binaries/Mundial2026/rinobot/bin/sample_player: error while loading shared libraries: librcsc.so.18: cannot open shared object file: No such file or directory
+/home/titas-2d/Binaries/Mundial2026/rinobot/bin/sample_player: error while loading shared libraries: librcsc.so.18: cannot open shared object file: No such file or directory
+/home/titas-2d/Binaries/Mundial2026/rinobot/bin/sample_player: error while loading shared libraries: librcsc.so.18: cannot open shared object file: No such file or directory
+/home/titas-2d/Binaries/Mundial2026/rinobot/bin/sample_player: error while loading shared libraries: librcsc.so.18: cannot open shared object file: No such file or directory
+/home/titas-2d/Binaries/Mundial2026/rinobot/bin/sample_player: error while loading shared libraries: librcsc.so.18: cannot open shared object file: No such file or directory
+/home/titas-2d/Binaries/Mundial2026/rinobot/bin/sample_player: error while loading shared libraries: librcsc.so.18: cannot open shared object file: No such file or directory
+/home/titas-2d/Binaries/Mundial2026/rinobot/bin/sample_player: error while loading shared libraries: librcsc.so.18: cannot open shared object file: No such file or directory
+/home/titas-2d/Binaries/Mundial2026/rinobot/bin/sample_coach: error while loading shared libraries: librcsc.so.18: cannot open shared object file: No such file or directory
+/home/titas-2d/Binaries/Mundial2026/rinobot/bin/sample_coach: error while loading shared libraries: librcsc.so.18: cannot open shared object file: No such file or directory
+******************************************************************
+ librcsc 
+ Copyright 2000 - 2007. Hidehisa Akiyama.
+ Copyright 2007 - 2011. Hidehisa Akiyama and Hiroki Shimora
+ Copyright 2011 -  Hidehisa Akiyama, Hiroki Shimora
+   Takuya Fukushima (2019-)
+ All rights reserved.
+******************************************************************
+******************************************************************
+ librcsc 
+ Copyright 2000 - 2007. Hidehisa Akiyama.
+ Copyright 2007 - 2011. Hidehisa Akiyama and Hiroki Shimora
+ Copyright 2011 -  Hidehisa Akiyama, Hiroki Shimora
+   Takuya Fukushima (2019-)
+ All rights reserved.
+******************************************************************
+*****************************************************************
+ This program is modified by Rinobot.
+ Copyright 2025. Rinobot.
+ All rights reserved.
+*****************************************************************
+*****************************************************************
+ This program is based on agent2d created by Hidehisa Akiyama.
+ Copyright 2006 - 2011. Hidehisa Akiyama and Hiroki Shimora.
+ All rights reserved.
+*****************************************************************
+*****************************************************************
+ This program is modified by Rinobot.
+ Copyright 2025. Rinobot.
+ All rights reserved.
+*****************************************************************
+*****************************************************************
+ This program is based on agent2d created by Hidehisa Akiyama.
+ Copyright 2006 - 2011. Hidehisa Akiyama and Hiroki Shimora.
+ All rights reserved.
+*****************************************************************
+Rinobot-Team: init ok.  unum: 1 side: r
+Rinobot-Team 1: [-1, 0] (v18+) force synch see mode.
+Rinobot-Team: init ok.  unum: 1 side: r
+Rinobot-Team 1: [-1, 0] (v18+) force synch see mode.
+Rinobot: init ok.  unum: 1 side: r
+Rinobot-Team 1:  KickTable created.
+Rinobot-Team 1: [-1, 0] set synch see mode.
+Rinobot: init ok.  unum: 1 side: r
+Rinobot-Team 1:  KickTable created.
+Rinobot-Team 1: [-1, 0] set synch see mode.
+Read Setting: data/settings/pimentao_verde.json
+Read Setting: data/settings/pimentao_verde.json
+******************************************************************
+ librcsc 
+ Copyright 2000 - 2007. Hidehisa Akiyama.
+ Copyright 2007 - 2011. Hidehisa Akiyama and Hiroki Shimora
+ Copyright 2011 -  Hidehisa Akiyama, Hiroki Shimora
+   Takuya Fukushima (2019-)
+ All rights reserved.
+******************************************************************
+******************************************************************
+ librcsc 
+ Copyright 2000 - 2007. Hidehisa Akiyama.
+ Copyright 2007 - 2011. Hidehisa Akiyama and Hiroki Shimora
+ Copyright 2011 -  Hidehisa Akiyama, Hiroki Shimora
+   Takuya Fukushima (2019-)
+ All rights reserved.
+******************************************************************
+******************************************************************
+ librcsc 
+ Copyright 2000 - 2007. Hidehisa Akiyama.
+ Copyright 2007 - 2011. Hidehisa Akiyama and Hiroki Shimora
+ Copyright 2011 -  Hidehisa Akiyama, Hiroki Shimora
+   Takuya Fukushima (2019-)
+ All rights reserved.
+******************************************************************
+******************************************************************
+ librcsc 
+ Copyright 2000 - 2007. Hidehisa Akiyama.
+ Copyright 2007 - 2011. Hidehisa Akiyama and Hiroki Shimora
+ Copyright 2011 -  Hidehisa Akiyama, Hiroki Shimora
+   Takuya Fukushima (2019-)
+ All rights reserved.
+******************************************************************
+******************************************************************
+ librcsc 
+ Copyright 2000 - 2007. Hidehisa Akiyama.
+ Copyright 2007 - 2011. Hidehisa Akiyama and Hiroki Shimora
+ Copyright 2011 -  Hidehisa Akiyama, Hiroki Shimora
+   Takuya Fukushima (2019-)
+ All rights reserved.
+******************************************************************
+******************************************************************
+ librcsc 
+ Copyright 2000 - 2007. Hidehisa Akiyama.
+ Copyright 2007 - 2011. Hidehisa Akiyama and Hiroki Shimora
+ Copyright 2011 -  Hidehisa Akiyama, Hiroki Shimora
+   Takuya Fukushima (2019-)
+ All rights reserved.
+******************************************************************
+******************************************************************
+ librcsc 
+ Copyright 2000 - 2007. Hidehisa Akiyama.
+ Copyright 2007 - 2011. Hidehisa Akiyama and Hiroki Shimora
+ Copyright 2011 -  Hidehisa Akiyama, Hiroki Shimora
+   Takuya Fukushima (2019-)
+ All rights reserved.
+******************************************************************
+******************************************************************
+ librcsc 
+ Copyright 2000 - 2007. Hidehisa Akiyama.
+ Copyright 2007 - 2011. Hidehisa Akiyama and Hiroki Shimora
+ Copyright 2011 -  Hidehisa Akiyama, Hiroki Shimora
+   Takuya Fukushima (2019-)
+ All rights reserved.
+******************************************************************
+******************************************************************
+ librcsc 
+ Copyright 2000 - 2007. Hidehisa Akiyama.
+ Copyright 2007 - 2011. Hidehisa Akiyama and Hiroki Shimora
+ Copyright 2011 -  Hidehisa Akiyama, Hiroki Shimora
+   Takuya Fukushima (2019-)
+ All rights reserved.
+******************************************************************
+******************************************************************
+ librcsc 
+ Copyright 2000 - 2007. Hidehisa Akiyama.
+ Copyright 2007 - 2011. Hidehisa Akiyama and Hiroki Shimora
+ Copyright 2011 -  Hidehisa Akiyama, Hiroki Shimora
+   Takuya Fukushima (2019-)
+ All rights reserved.
+******************************************************************
+******************************************************************
+ librcsc 
+ Copyright 2000 - 2007. Hidehisa Akiyama.
+ Copyright 2007 - 2011. Hidehisa Akiyama and Hiroki Shimora
+ Copyright 2011 -  Hidehisa Akiyama, Hiroki Shimora
+   Takuya Fukushima (2019-)
+ All rights reserved.
+******************************************************************
+******************************************************************
+ librcsc 
+ Copyright 2000 - 2007. Hidehisa Akiyama.
+ Copyright 2007 - 2011. Hidehisa Akiyama and Hiroki Shimora
+ Copyright 2011 -  Hidehisa Akiyama, Hiroki Shimora
+   Takuya Fukushima (2019-)
+ All rights reserved.
+******************************************************************
+******************************************************************
+ librcsc 
+ Copyright 2000 - 2007. Hidehisa Akiyama.
+ Copyright 2007 - 2011. Hidehisa Akiyama and Hiroki Shimora
+ Copyright 2011 -  Hidehisa Akiyama, Hiroki Shimora
+   Takuya Fukushima (2019-)
+ All rights reserved.
+******************************************************************
+******************************************************************
+ librcsc 
+ Copyright 2000 - 2007. Hidehisa Akiyama.
+ Copyright 2007 - 2011. Hidehisa Akiyama and Hiroki Shimora
+ Copyright 2011 -  Hidehisa Akiyama, Hiroki Shimora
+   Takuya Fukushima (2019-)
+ All rights reserved.
+******************************************************************
+******************************************************************
+ librcsc 
+ Copyright 2000 - 2007. Hidehisa Akiyama.
+ Copyright 2007 - 2011. Hidehisa Akiyama and Hiroki Shimora
+ Copyright 2011 -  Hidehisa Akiyama, Hiroki Shimora
+   Takuya Fukushima (2019-)
+ All rights reserved.
+******************************************************************
+******************************************************************
+ librcsc 
+ Copyright 2000 - 2007. Hidehisa Akiyama.
+ Copyright 2007 - 2011. Hidehisa Akiyama and Hiroki Shimora
+ Copyright 2011 -  Hidehisa Akiyama, Hiroki Shimora
+   Takuya Fukushima (2019-)
+ All rights reserved.
+******************************************************************
+******************************************************************
+ librcsc 
+ Copyright 2000 - 2007. Hidehisa Akiyama.
+ Copyright 2007 - 2011. Hidehisa Akiyama and Hiroki Shimora
+ Copyright 2011 -  Hidehisa Akiyama, Hiroki Shimora
+   Takuya Fukushima (2019-)
+ All rights reserved.
+******************************************************************
+******************************************************************
+ librcsc 
+ Copyright 2000 - 2007. Hidehisa Akiyama.
+ Copyright 2007 - 2011. Hidehisa Akiyama and Hiroki Shimora
+ Copyright 2011 -  Hidehisa Akiyama, Hiroki Shimora
+   Takuya Fukushima (2019-)
+ All rights reserved.
+******************************************************************
+******************************************************************
+ librcsc 
+ Copyright 2000 - 2007. Hidehisa Akiyama.
+ Copyright 2007 - 2011. Hidehisa Akiyama and Hiroki Shimora
+ Copyright 2011 -  Hidehisa Akiyama, Hiroki Shimora
+   Takuya Fukushima (2019-)
+ All rights reserved.
+******************************************************************
+******************************************************************
+ librcsc 
+ Copyright 2000 - 2007. Hidehisa Akiyama.
+ Copyright 2007 - 2011. Hidehisa Akiyama and Hiroki Shimora
+ Copyright 2011 -  Hidehisa Akiyama, Hiroki Shimora
+   Takuya Fukushima (2019-)
+ All rights reserved.
+******************************************************************
+******************************************************************
+ librcsc 
+ Copyright 2000 - 2007. Hidehisa Akiyama.
+ Copyright 2007 - 2011. Hidehisa Akiyama and Hiroki Shimora
+ Copyright 2011 -  Hidehisa Akiyama, Hiroki Shimora
+   Takuya Fukushima (2019-)
+ All rights reserved.
+******************************************************************
+Rinobot-Team coach: team_graphic loaded from /home/titas-2d/Binaries/Mundial2026/rinobot/bin/team_logo.xpm, tiles=224
+*****************************************************************
+ This program is modified by Rinobot.
+ Copyright 2025. Rinobot.
+ All rights reserved.
+*****************************************************************
+*****************************************************************
+ This program is based on agent2d created by Hidehisa Akiyama.
+ Copyright 2006 - 2011. Hidehisa Akiyama and Hiroki Shimora.
+ All rights reserved.
+*****************************************************************
+******************************************************************
+ librcsc 
+ Copyright 2000 - 2007. Hidehisa Akiyama.
+ Copyright 2007 - 2011. Hidehisa Akiyama and Hiroki Shimora
+ Copyright 2011 -  Hidehisa Akiyama, Hiroki Shimora
+   Takuya Fukushima (2019-)
+ All rights reserved.
+******************************************************************
+Rinobot-Team coach: team_graphic loaded from /home/titas-2d/Binaries/Mundial2026/rinobot/bin/team_logo.xpm, tiles=224
+*****************************************************************
+ This program is modified by Rinobot.
+ Copyright 2025. Rinobot.
+ All rights reserved.
+*****************************************************************
+*****************************************************************
+ This program is based on agent2d created by Hidehisa Akiyama.
+ Copyright 2006 - 2011. Hidehisa Akiyama and Hiroki Shimora.
+ All rights reserved.
+*****************************************************************
+*****************************************************************
+ This program is modified by Rinobot.
+ Copyright 2025. Rinobot.
+ All rights reserved.
+*****************************************************************
+*****************************************************************
+ This program is based on agent2d created by Hidehisa Akiyama.
+ Copyright 2006 - 2011. Hidehisa Akiyama and Hiroki Shimora.
+ All rights reserved.
+*****************************************************************
+*****************************************************************
+ This program is modified by Rinobot.
+ Copyright 2025. Rinobot.
+ All rights reserved.
+*****************************************************************
+*****************************************************************
+ This program is based on agent2d created by Hidehisa Akiyama.
+ Copyright 2006 - 2011. Hidehisa Akiyama and Hiroki Shimora.
+ All rights reserved.
+*****************************************************************
+Rinobot-Team: init ok.  unum: 2 side: r
+Rinobot-Team 2: [-1, 0] (v18+) force synch see mode.
+Rinobot-Team coach: [0, 0] send team_graphic 32 tiles
+Rinobot-Team: init ok.  unum: 2 side: r
+Rinobot-Team 2: [-1, 0] (v18+) force synch see mode.
+Rinobot-Team coach: [0, 0] recv (error only_init_allowed_on_init_port)
+Rinobot-Team coach: [0, 0] recv (error only_init_allowed_on_init_port)
+Rinobot-Team coach: [0, 0] recv (error only_init_allowed_on_init_port)
+Rinobot-Team coach: [0, 0] recv (error only_init_allowed_on_init_port)
+Rinobot-Team coach: [0, 0] recv (error only_init_allowed_on_init_port)
+Rinobot-Team coach: [0, 0] recv (error only_init_allowed_on_init_port)
+Rinobot-Team coach: [0, 0] recv (error only_init_allowed_on_init_port)
+Rinobot-Team coach: [0, 0] recv (error only_init_allowed_on_init_port)
+Rinobot-Team coach: [0, 0] recv (error only_init_allowed_on_init_port)
+Rinobot-Team coach: [0, 0] recv (error only_init_allowed_on_init_port)
+Rinobot-Team coach: [0, 0] recv (error only_init_allowed_on_init_port)
+Rinobot-Team coach: [0, 0] recv (error only_init_allowed_on_init_port)
+Rinobot-Team coach: [0, 0] recv (error only_init_allowed_on_init_port)
+Rinobot-Team coach: [0, 0] recv (error only_init_allowed_on_init_port)
+Rinobot-Team coach: [0, 0] recv (error only_init_allowed_on_init_port)
+Rinobot-Team coach: [0, 0] recv (error only_init_allowed_on_init_port)
+Rinobot-Team coach: [0, 0] recv (error only_init_allowed_on_init_port)
+Rinobot-Team coach: [0, 0] recv (error only_init_allowed_on_init_port)
+Rinobot-Team coach: [0, 0] recv (error only_init_allowed_on_init_port)
+Rinobot-Team coach: [0, 0] recv (error only_init_allowed_on_init_port)
+Rinobot-Team coach: [0, 0] recv (error only_init_allowed_on_init_port)
+Rinobot-Team coach: [0, 0] recv (error only_init_allowed_on_init_port)
+Rinobot-Team coach: [0, 0] recv (error only_init_allowed_on_init_port)
+Rinobot-Team coach: [0, 0] recv (error only_init_allowed_on_init_port)
+Rinobot-Team coach: [0, 0] recv (error only_init_allowed_on_init_port)
+Rinobot-Team coach: [0, 0] recv (error only_init_allowed_on_init_port)
+Rinobot-Team coach: [0, 0] recv (error only_init_allowed_on_init_port)
+Rinobot-Team coach: [0, 0] recv (error only_init_allowed_on_init_port)
+Rinobot-Team coach: [0, 0] recv (error only_init_allowed_on_init_port)
+Rinobot-Team coach: [0, 0] recv (error only_init_allowed_on_init_port)
+Rinobot-Team coach: [0, 0] recv (error only_init_allowed_on_init_port)
+Rinobot-Team coach: [0, 0] recv (error only_init_allowed_on_init_port)
+Rinobot-Team coach: [0, 0] recv (ok eye on)
+Rinobot-Team coach: [0, 0] updated clang capacity.
+Rinobot-Team coach: [0, 0] send team_graphic 32 tiles
+*****************************************************************
+ This program is modified by Rinobot.
+ Copyright 2025. Rinobot.
+ All rights reserved.
+*****************************************************************
+*****************************************************************
+ This program is based on agent2d created by Hidehisa Akiyama.
+ Copyright 2006 - 2011. Hidehisa Akiyama and Hiroki Shimora.
+ All rights reserved.
+*****************************************************************
+Rinobot-Team coach: [0, 0] recv (ok eye on)
+*****************************************************************
+ This program is modified by Rinobot.
+ Copyright 2025. Rinobot.
+ All rights reserved.
+*****************************************************************
+*****************************************************************
+ This program is based on agent2d created by Hidehisa Akiyama.
+ Copyright 2006 - 2011. Hidehisa Akiyama and Hiroki Shimora.
+ All rights reserved.
+*****************************************************************
+Rinobot-Team: init ok.  unum: 3 side: r
+Rinobot-Team 3: [-1, 0] (v18+) force synch see mode.
+Rinobot-Team coach: [0, 1] send team_graphic 32 tiles
+Rinobot-Team: init ok.  unum: 3 side: r
+Rinobot-Team 3: [-1, 0] (v18+) force synch see mode.
+*****************************************************************
+ This program is modified by Rinobot.
+ Copyright 2025. Rinobot.
+ All rights reserved.
+*****************************************************************
+*****************************************************************
+ This program is based on agent2d created by Hidehisa Akiyama.
+ Copyright 2006 - 2011. Hidehisa Akiyama and Hiroki Shimora.
+ All rights reserved.
+*****************************************************************
+Rinobot-Team: init ok.  unum: 4 side: r
+Rinobot-Team 4: [-1, 0] (v18+) force synch see mode.
+Rinobot: init ok.  unum: 2 side: r
+Rinobot-Team 2:  KickTable created.
+*****************************************************************
+ This program is modified by Rinobot.
+ Copyright 2025. Rinobot.
+ All rights reserved.
+*****************************************************************
+*****************************************************************
+ This program is based on agent2d created by Hidehisa Akiyama.
+ Copyright 2006 - 2011. Hidehisa Akiyama and Hiroki Shimora.
+ All rights reserved.
+*****************************************************************
+Rinobot-Team 2: [-1, 0] set synch see mode.
+Read Setting: data/settings/pimentao_verde.json
+Rinobot-Team: init ok.  unum: 4 side: r
+Rinobot-Team 4: [-1, 0] (v18+) force synch see mode.
+*****************************************************************
+ This program is modified by Rinobot.
+ Copyright 2025. Rinobot.
+ All rights reserved.
+*****************************************************************
+*****************************************************************
+ This program is based on agent2d created by Hidehisa Akiyama.
+ Copyright 2006 - 2011. Hidehisa Akiyama and Hiroki Shimora.
+ All rights reserved.
+*****************************************************************
+Rinobot: init ok.  unum: 2 side: r
+Rinobot-Team 2:  KickTable created.
+Rinobot-Team 2: [-1, 0] set synch see mode.
+Read Setting: data/settings/pimentao_verde.json
+Rinobot-Team: init ok.  unum: 5 side: r
+Rinobot-Team coach: [0, 1] send team_graphic 32 tiles
+Rinobot-Team 5: [-1, 0] (v18+) force synch see mode.
+*****************************************************************
+ This program is modified by Rinobot.
+ Copyright 2025. Rinobot.
+ All rights reserved.
+*****************************************************************
+*****************************************************************
+ This program is based on agent2d created by Hidehisa Akiyama.
+ Copyright 2006 - 2011. Hidehisa Akiyama and Hiroki Shimora.
+ All rights reserved.
+*****************************************************************
+Rinobot-Team: init ok.  unum: 6 side: r
+Rinobot-Team 6: [-1, 0] (v18+) force synch see mode.
+Rinobot: init ok.  unum: 4 side: r
+Rinobot-Team 4:  KickTable created.
+Rinobot-Team 4: [-1, 0] set synch see mode.
+*****************************************************************
+ This program is modified by Rinobot.
+ Copyright 2025. Rinobot.
+ All rights reserved.
+*****************************************************************
+*****************************************************************
+ This program is based on agent2d created by Hidehisa Akiyama.
+ Copyright 2006 - 2011. Hidehisa Akiyama and Hiroki Shimora.
+ All rights reserved.
+*****************************************************************
+*****************************************************************
+ This program is modified by Rinobot.
+ Copyright 2025. Rinobot.
+ All rights reserved.
+*****************************************************************
+*****************************************************************
+ This program is based on agent2d created by Hidehisa Akiyama.
+ Copyright 2006 - 2011. Hidehisa Akiyama and Hiroki Shimora.
+ All rights reserved.
+*****************************************************************
+*****************************************************************
+ This program is modified by Rinobot.
+ Copyright 2025. Rinobot.
+ All rights reserved.
+*****************************************************************
+*****************************************************************
+ This program is based on agent2d created by Hidehisa Akiyama.
+ Copyright 2006 - 2011. Hidehisa Akiyama and Hiroki Shimora.
+ All rights reserved.
+*****************************************************************
+Rinobot-Team coach: [0, 2] send team_graphic 32 tiles
+Read Setting: data/settings/pimentao_verde.json
+*****************************************************************
+ This program is modified by Rinobot.
+ Copyright 2025. Rinobot.
+ All rights reserved.
+*****************************************************************
+*****************************************************************
+ This program is based on agent2d created by Hidehisa Akiyama.
+ Copyright 2006 - 2011. Hidehisa Akiyama and Hiroki Shimora.
+ All rights reserved.
+*****************************************************************
+Rinobot-Team: init ok.  unum: 7 side: r
+Rinobot-Team 7: [-1, 0] (v18+) force synch see mode.
+Rinobot-Team: init ok.  unum: 7 side: r
+Rinobot-Team 7: [-1, 0] (v18+) force synch see mode.
+Rinobot-Team: init ok.  unum: 6 side: r
+Rinobot-Team 6: [-1, 0] (v18+) force synch see mode.
+*****************************************************************
+ This program is modified by Rinobot.
+ Copyright 2025. Rinobot.
+ All rights reserved.
+*****************************************************************
+*****************************************************************
+ This program is based on agent2d created by Hidehisa Akiyama.
+ Copyright 2006 - 2011. Hidehisa Akiyama and Hiroki Shimora.
+ All rights reserved.
+*****************************************************************
+Rinobot-Team: init ok.  unum: 5 side: r
+Rinobot-Team 5: [-1, 0] (v18+) force synch see mode.
+Rinobot-Team: init ok.  unum: 8 side: r
+Rinobot-Team 8: [-1, 0] (v18+) force synch see mode.
+Rinobot: init ok.  unum: 3 side: r
+Rinobot-Team 3:  KickTable created.
+Rinobot-Team 3: [-1, 0] set synch see mode.
+Read Setting: data/settings/pimentao_verde.json
+*****************************************************************
+ This program is modified by Rinobot.
+ Copyright 2025. Rinobot.
+ All rights reserved.
+*****************************************************************
+*****************************************************************
+ This program is based on agent2d created by Hidehisa Akiyama.
+ Copyright 2006 - 2011. Hidehisa Akiyama and Hiroki Shimora.
+ All rights reserved.
+*****************************************************************
+*****************************************************************
+ This program is modified by Rinobot.
+ Copyright 2025. Rinobot.
+ All rights reserved.
+*****************************************************************
+*****************************************************************
+ This program is based on agent2d created by Hidehisa Akiyama.
+ Copyright 2006 - 2011. Hidehisa Akiyama and Hiroki Shimora.
+ All rights reserved.
+*****************************************************************
+Rinobot-Team: init ok.  unum: 9 side: r
+Rinobot-Team 9: [-1, 0] (v18+) force synch see mode.
+Rinobot-Team: init ok.  unum: 8 side: r
+Rinobot-Team 8: [-1, 0] (v18+) force synch see mode.
+Rinobot: init ok.  unum: 4 side: r
+Rinobot-Team 4:  KickTable created.
+Rinobot-Team 4: [-1, 0] set synch see mode.
+Read Setting: data/settings/pimentao_verde.json
+*****************************************************************
+ This program is modified by Rinobot.
+ Copyright 2025. Rinobot.
+ All rights reserved.
+*****************************************************************
+*****************************************************************
+ This program is based on agent2d created by Hidehisa Akiyama.
+ Copyright 2006 - 2011. Hidehisa Akiyama and Hiroki Shimora.
+ All rights reserved.
+*****************************************************************
+Rinobot: init ok.  unum: 5 side: r
+Rinobot-Team 5:  KickTable created.
+Rinobot-Team 5: [-1, 0] set synch see mode.
+Rinobot: init ok.  unum: 3 side: r
+Rinobot-Team 3:  KickTable created.
+*****************************************************************
+ This program is modified by Rinobot.
+ Copyright 2025. Rinobot.
+ All rights reserved.
+*****************************************************************
+*****************************************************************
+ This program is based on agent2d created by Hidehisa Akiyama.
+ Copyright 2006 - 2011. Hidehisa Akiyama and Hiroki Shimora.
+ All rights reserved.
+*****************************************************************
+Rinobot-Team: init ok.  unum: 9 side: r
+Rinobot-Team 9: [-1, 0] (v18+) force synch see mode.
+Rinobot-Team 3: [-1, 0] set synch see mode.
+Read Setting: data/settings/pimentao_verde.json
+*****************************************************************
+ This program is modified by Rinobot.
+ Copyright 2025. Rinobot.
+ All rights reserved.
+*****************************************************************
+*****************************************************************
+ This program is based on agent2d created by Hidehisa Akiyama.
+ Copyright 2006 - 2011. Hidehisa Akiyama and Hiroki Shimora.
+ All rights reserved.
+*****************************************************************
+Rinobot: init ok.  unum: 8 side: r
+Rinobot-Team 8:  KickTable created.
+Rinobot-Team 8: [-1, 0] set synch see mode.
+*****************************************************************
+ This program is modified by Rinobot.
+ Copyright 2025. Rinobot.
+ All rights reserved.
+*****************************************************************
+*****************************************************************
+ This program is based on agent2d created by Hidehisa Akiyama.
+ Copyright 2006 - 2011. Hidehisa Akiyama and Hiroki Shimora.
+ All rights reserved.
+*****************************************************************
+Read Setting: data/settings/pimentao_verde.json
+Rinobot-Team coach: [0, 2] send team_graphic 32 tiles
+Rinobot: init ok.  unum: 9 side: r
+Rinobot-Team 9:  KickTable created.
+Rinobot: init ok.  unum: 8 side: r
+Rinobot-Team 8:  KickTable created.
+Rinobot-Team: init ok.  unum: 10 side: r
+Rinobot-Team 10: [-1, 0] (v18+) force synch see mode.
+Rinobot-Team 8: [-1, 0] set synch see mode.
+Read Setting: data/settings/pimentao_verde.json
+Rinobot-Team 9: [-1, 0] set synch see mode.
+*****************************************************************
+ This program is modified by Rinobot.
+ Copyright 2025. Rinobot.
+ All rights reserved.
+*****************************************************************
+*****************************************************************
+ This program is based on agent2d created by Hidehisa Akiyama.
+ Copyright 2006 - 2011. Hidehisa Akiyama and Hiroki Shimora.
+ All rights reserved.
+*****************************************************************
+Rinobot: init ok.  unum: 6 side: r
+Rinobot-Team 6:  KickTable created.
+Rinobot-Team 6: [-1, 0] set synch see mode.
+Rinobot-Team: init ok.  unum: 11 side: r
+Rinobot-Team 11: [-1, 0] (v18+) force synch see mode.
+Rinobot-Team coach: [0, 3] send team_graphic 32 tiles
+Read Setting: data/settings/pimentao_verde.json
+Read Setting: data/settings/pimentao_verde.json
+Rinobot: init ok.  unum: 6 side: r
+Rinobot-Team 6:  KickTable created.
+Rinobot-Team 6: [-1, 0] set synch see mode.
+Read Setting: data/settings/pimentao_verde.json
+Rinobot-Team: init ok.  unum: 10 side: r
+Read Setting: data/settings/pimentao_verde.json
+Rinobot-Team 10: [-1, 0] (v18+) force synch see mode.
+Rinobot: init ok.  unum: Rinobot-Team: init ok.  unum: 711 side: r
+ side: r
+Rinobot-Team 7:  KickTable created.
+Rinobot-Team 11: [-1, 0] (v18+) force synch see mode.
+Rinobot-Team 7: [-1, 0] set synch see mode.
+Read Setting: data/settings/pimentao_verde.json
+Rinobot: init ok.  unum: 7 side: r
+Rinobot-Team 7:  KickTable created.
+Rinobot: init ok.  unum: 5 side: r
+Rinobot-Team 5:  KickTable created.
+Rinobot-Team 7: [-1, 0] set synch see mode.
+Rinobot-Team 5: [-1, 0] set synch see mode.
+Read Setting: data/settings/pimentao_verde.json
+Read Setting: data/settings/pimentao_verde.json
+Rinobot: init ok.  unum: 9 side: r
+Rinobot-Team 9:  KickTable created.
+Rinobot-Team 9: [-1, 0] set synch see mode.
+Read Setting: data/settings/pimentao_verde.json
+Rinobot: init ok.  unum: 10 side: r
+Rinobot-Team 10:  KickTable created.
+Rinobot-Team 10: [-1, 0] set synch see mode.
+Rinobot: init ok.  unum: 11 side: r
+Rinobot-Team 11:  KickTable created.
+Rinobot-Team 11: [-1, 0] set synch see mode.
+Rinobot: init ok.  unum: 11 side: r
+Rinobot-Team 11:  KickTable created.
+Rinobot-Team 11: [-1, 0] set synch see mode.
+Rinobot: init ok.  unum: 10 side: r
+Rinobot-Team 10:  KickTable created.
+Rinobot-Team 10: [-1, 0] set synch see mode.
+Rinobot-Team coach: [0, 4] send team_graphic 32 tiles
+Read Setting: data/settings/pimentao_verde.json
+Read Setting: data/settings/pimentao_verde.json
+Rinobot-Team coach: [0, 3] send team_graphic 32 tiles
+Read Setting: data/settings/pimentao_verde.json
+Read Setting: data/settings/pimentao_verde.json
+Rinobot-Team coach: [0, 5] send team_graphic 32 tiles
+Rinobot-Team coach: [0, 4] send team_graphic 32 tiles
+Rinobot-Team coach: [0, 6] send team_graphic 32 tiles
+Rinobot-Team coach: [0, 5] send team_graphic 32 tiles
+Rinobot-Team coach: [0, 7] send team_graphic 32 tiles
+Rinobot-Team coach: [0, 6] send team_graphic 32 tiles
+id speed step inc  power  stam  karea
+ 0 1.000   6  45.0 100.0  55.0  1.085
+ 1 0.885   6  46.2 100.0  53.8  1.069
+ 2 0.811   5  49.3 100.0  50.7  1.009
+ 3 0.960   6  47.4 100.0  52.6  1.053
+ 4 0.930   6  47.8 100.0  52.2  1.118
+ 5 0.769   5  47.3 100.0  52.7  1.008
+ 6 0.918   6  49.2 100.0  50.8  1.134
+ 7 0.843   5  41.2 100.0  58.8  1.136
+ 8 0.949   6  48.2 100.0  51.8  1.037
+ 9 0.815   4  46.1 100.0  53.9  1.136
+ 10 0.815   5  49.6 100.0  50.4  0.993
+ 11 0.830   4  42.4 100.0  57.6  1.093
+ 12 0.767   6  51.1 100.0  48.9  0.995
+ 13 0.774   6  48.0 100.0  52.0  1.158
+ 14 0.789   5  42.1 100.0  57.9  0.997
+ 15 0.974   5  44.6 100.0  55.4  1.087
+ 16 0.882   6  48.2 100.0  51.8  1.014
+ 17 0.794   5  45.3 100.0  54.7  1.137
+$$$$$$$$$$$$$$$$$$$$$$$$isother
+Rinobot-Team coach: change player 1 to type 0
+Rinobot-Team coach: change player 9 to type 15
+Rinobot-Team coach: change player 2 to type 3
+Rinobot-Team coach: change player 11 to type 8
+Rinobot-Team coach: change player 4 to type 4
+Rinobot-Team coach: change player 10 to type 6
+Rinobot-Team coach: change player 3 to type 16
+Rinobot-Team coach: change player 5 to type 1
+Rinobot-Team coach: change player 7 to type 7
+Rinobot-Team coach: change player 8 to type 11
+Rinobot-Team coach: change player 6 to type 9
+id speed step inc  power  stam  karea
+ 0 1.000   6  45.0 100.0  55.0  1.085
+ 1 0.885   6  46.2 100.0  53.8  1.069
+ 2 0.811   5  49.3 100.0  50.7  1.009
+ 3 0.960   6  47.4 100.0  52.6  1.053
+ 4 0.930   6  47.8 100.0  52.2  1.118
+ 5 0.769   5  47.3 100.0  52.7  1.008
+ 6 0.918   6  49.2 100.0  50.8  1.134
+ 7 0.843   5  41.2 100.0  58.8  1.136
+ 8 0.949   6  48.2 100.0  51.8  1.037
+ 9 0.815   4  46.1 100.0  53.9  1.136
+ 10 0.815   5  49.6 100.0  50.4  0.993
+ 11 0.830   4  42.4 100.0  57.6  1.093
+ 12 0.767   6  51.1 100.0  48.9  0.995
+ 13 0.774   6  48.0 100.0  52.0  1.158
+ 14 0.789   5  42.1 100.0  57.9  0.997
+ 15 0.974   5  44.6 100.0  55.4  1.087
+ 16 0.882   6  48.2 100.0  51.8  1.014
+ 17 0.794   5  45.3 100.0  54.7  1.137
+$$$$$$$$$$$$$$$$$$$$$$$$isother
+Rinobot-Team coach: change player 1 to type 0
+Rinobot-Team coach: change player 9 to type 15
+Rinobot-Team coach: change player 2 to type 3
+Rinobot-Team coach: change player 11 to type 8
+Rinobot-Team coach: change player 4 to type 4
+Rinobot-Team coach: change player 10 to type 6
+Rinobot-Team coach: change player 3 to type 16
+Rinobot-Team coach: change player 5 to type 1
+Rinobot-Team coach: change player 7 to type 7
+Rinobot-Team coach: change player 8 to type 11
+Rinobot-Team coach: change player 6 to type 9
+Rinobot-Team coach: [95, 0] no player type for opponent 5. restart analysis.
+Rinobot-Team coach: [95, 0] no player type for opponent 11. restart analysis.
+Rinobot-Team coach: [95, 0] no player type for opponent 9. restart analysis.
+Rinobot-Team coach: [96, 0] no player type for opponent 11. restart analysis.
+Rinobot-Team coach: [96, 0] no player type for opponent 9. restart analysis.
+Rinobot-Team coach: [96, 0] no player type for opponent 4. restart analysis.
+Rinobot-Team coach: [97, 0] no player type for opponent 11. restart analysis.
+Rinobot-Team coach: [97, 0] no player type for opponent 2. restart analysis.
+Rinobot-Team coach: [98, 0] no player type for opponent 4. restart analysis.
+Rinobot-Team coach: [99, 0] no player type for opponent 11. restart analysis.
+Rinobot-Team coach: [95, 0] no player type for opponent 11. restart analysis.
+Rinobot-Team coach: [100, 0] no player type for opponent 8. restart analysis.
+Rinobot-Team coach: [96, 0] no player type for opponent 11. restart analysis.
+Rinobot-Team coach: [98, 0] no player type for opponent 4. restart analysis.
+Rinobot-Team coach: [98, 0] no player type for opponent 7. restart analysis.
+Rinobot-Team coach: [99, 0] no player type for opponent 4. restart analysis.
+Rinobot-Team coach: [99, 0] no player type for opponent 11. restart analysis.
+Rinobot-Team coach: [100, 0] determined opponent 5 type = 1
+Rinobot-Team coach: [104, 0] no player type for opponent 6. restart analysis.
+Rinobot-Team coach: [104, 0] no player type for opponent 11. restart analysis.
+Rinobot-Team coach: [105, 0] no player type for opponent 11. restart analysis.
+Rinobot-Team coach: [102, 0] no player type for opponent 7. restart analysis.
+Rinobot-Team coach: [107, 0] no player type for opponent 6. restart analysis.
+Rinobot-Team coach: [107, 0] no player type for opponent 11. restart analysis.
+Rinobot-Team coach: [104, 0] determined opponent 4 type = 6
+Rinobot-Team coach: [110, 0] no player type for opponent 5. restart analysis.
+Rinobot-Team coach: [110, 0] no player type for opponent 10. restart analysis.
+Rinobot-Team coach: [110, 0] no player type for opponent 11. restart analysis.
+Rinobot-Team coach: [106, 0] no player type for opponent 10. restart analysis.
+Rinobot-Team coach: [106, 0] no player type for opponent 9. restart analysis.
+Rinobot-Team coach: [107, 0] no player type for opponent 3. restart analysis.
+Rinobot-Team coach: [111, 0] no player type for opponent 6. restart analysis.
+Rinobot-Team coach: [111, 0] no player type for opponent 8. restart analysis.
+Rinobot-Team coach: [111, 0] no player type for opponent 5. restart analysis.
+Rinobot-Team coach: [112, 0] no player type for opponent 11. restart analysis.
+Rinobot-Team coach: [115, 0] no player type for opponent 7. restart analysis.
+Rinobot-Team coach: [118, 0] no player type for opponent 2. restart analysis.
+Rinobot-Team coach: [119, 0] no player type for opponent 11. restart analysis.
+Rinobot-Team coach: [121, 0] no player type for opponent 7. restart analysis.
+Rinobot-Team coach: [125, 0] no player type for opponent 7. restart analysis.
+Rinobot-Team coach: [108, 0] determined opponent 6 type = 11
+Rinobot-Team coach: [108, 0] no player type for opponent 10. restart analysis.
+Rinobot-Team coach: [126, 0] no player type for opponent 8. restart analysis.
+Rinobot-Team coach: [110, 0] no player type for opponent 2. restart analysis.
+Rinobot-Team coach: [129, 0] no player type for opponent 6. restart analysis.
+Rinobot-Team coach: [111, 0] determined opponent 11 type = 3
+Rinobot-Team coach: [112, 0] no player type for opponent 10. restart analysis.
+Rinobot-Team coach: [113, 0] no player type for opponent 9. restart analysis.
+Rinobot-Team coach: [138, 0] no player type for opponent 8. restart analysis.
+Rinobot-Team coach: [141, 0] no player type for opponent 2. restart analysis.
+Rinobot-Team coach: [142, 0] no player type for opponent 2. restart analysis.
+Rinobot-Team coach: [114, 0] no player type for opponent 2. restart analysis.
+Rinobot-Team coach: [114, 0] no player type for opponent 10. restart analysis.
+Rinobot-Team coach: [115, 0] no player type for opponent 9. restart analysis.
+Rinobot-Team coach: [147, 0] no player type for opponent 2. restart analysis.
+Rinobot-Team coach: [117, 0] no player type for opponent 3. restart analysis.
+Rinobot-Team coach: [151, 0] no player type for opponent 6. restart analysis.
+Rinobot-Team coach: [119, 0] no player type for opponent 9. restart analysis.
+Rinobot-Team coach: [120, 0] no player type for opponent 3. restart analysis.
+Rinobot-Team coach: [121, 0] no player type for opponent 8. restart analysis.
+Rinobot-Team coach: [123, 0] no player type for opponent 10. restart analysis.
+Rinobot-Team coach: [123, 0] no player type for opponent 3. restart analysis.
+Rinobot-Team coach: [124, 0] no player type for opponent 8. restart analysis.
+Rinobot-Team coach: [125, 0] no player type for opponent 10. restart analysis.
+Rinobot-Team coach: [153, 0] no player type for opponent 6. restart analysis.
+Rinobot-Team coach: [153, 0] no player type for opponent 4. restart analysis.
+Rinobot-Team coach: [155, 0] no player type for opponent 4. restart analysis.
+Rinobot-Team coach: [156, 0] no player type for opponent 8. restart analysis.
+Rinobot-Team coach: [157, 0] no player type for opponent 4. restart analysis.
+Rinobot-Team coach: [159, 0] no player type for opponent 3. restart analysis.
+Rinobot-Team coach: [159, 0] no player type for opponent 8. restart analysis.
+Rinobot-Team coach: [160, 0] no player type for opponent 6. restart analysis.
+Rinobot-Team coach: [128, 0] no player type for opponent 10. restart analysis.
+Rinobot-Team coach: [161, 0] no player type for opponent 11. restart analysis.
+Rinobot-Team coach: [161, 0] no player type for opponent 8. restart analysis.
+Rinobot-Team coach: [162, 0] no player type for opponent 6. restart analysis.
+Rinobot-Team coach: [163, 0] no player type for opponent 7. restart analysis.
+Rinobot-Team coach: [129, 0] no player type for opponent 10. restart analysis.
+Rinobot-Team coach: [129, 0] no player type for opponent 3. restart analysis.
+Rinobot-Team coach: [164, 0] no player type for opponent 10. restart analysis.
+Rinobot-Team coach: [165, 0] no player type for opponent 8. restart analysis.
+Rinobot-Team coach: [166, 0] no player type for opponent 7. restart analysis.
+Rinobot-Team coach: [130, 0] no player type for opponent 7. restart analysis.
+Rinobot-Team coach: [167, 0] no player type for opponent 8. restart analysis.
+Rinobot-Team coach: [168, 0] no player type for opponent 11. restart analysis.
+Rinobot-Team coach: [133, 0] no player type for opponent 9. restart analysis.
+Rinobot-Team coach: [169, 0] no player type for opponent 8. restart analysis.
+Rinobot-Team coach: [171, 0] no player type for opponent 11. restart analysis.
+Rinobot-Team coach: [171, 0] no player type for opponent 6. restart analysis.
+Rinobot-Team coach: [172, 0] no player type for opponent 7. restart analysis.
+Rinobot-Team coach: [172, 0] no player type for opponent 5. restart analysis.
+Rinobot-Team coach: [172, 0] no player type for opponent 8. restart analysis.
+Rinobot-Team coach: [136, 0] no player type for opponent 7. restart analysis.
+Rinobot-Team coach: [136, 0] no player type for opponent 3. restart analysis.
+Rinobot-Team coach: [136, 0] no player type for opponent 8. restart analysis.
+Rinobot-Team coach: [173, 0] no player type for opponent 2. restart analysis.
+Rinobot-Team coach: [174, 0] no player type for opponent 10. restart analysis.
+Rinobot-Team coach: [174, 0] no player type for opponent 2. restart analysis.
+Rinobot-Team coach: [138, 0] no player type for opponent 7. restart analysis.
+Rinobot-Team coach: [175, 0] no player type for opponent 6. restart analysis.
+Rinobot-Team coach: [175, 0] no player type for opponent 4. restart analysis.
+Rinobot-Team coach: [176, 0] no player type for opponent 4. restart analysis.
+Rinobot-Team coach: [177, 0] no player type for opponent 4. restart analysis.
+Rinobot-Team coach: [141, 0] no player type for opponent 10. restart analysis.
+Rinobot-Team coach: [178, 0] no player type for opponent 9. restart analysis.
+Rinobot-Team coach: [178, 0] no player type for opponent 7. restart analysis.
+Rinobot-Team coach: [178, 0] no player type for opponent 2. restart analysis.
+Rinobot-Team coach: [179, 0] no player type for opponent 9. restart analysis.
+Rinobot-Team coach: [180, 0] no player type for opponent 4. restart analysis.
+Rinobot-Team coach: [143, 0] no player type for opponent 3. restart analysis.
+Rinobot-Team coach: [143, 0] no player type for opponent 10. restart analysis.
+Rinobot-Team coach: [182, 0] no player type for opponent 3. restart analysis.
+Rinobot-Team coach: [182, 0] no player type for opponent 8. restart analysis.
+Rinobot-Team coach: [185, 0] no player type for opponent 10. restart analysis.
+Rinobot-Team coach: [185, 0] no player type for opponent 5. restart analysis.
+Rinobot-Team coach: [147, 0] no player type for opponent 10. restart analysis.
+Rinobot-Team coach: [149, 0] no player type for opponent 3. restart analysis.
+Rinobot-Team coach: [187, 0] no player type for opponent 10. restart analysis.
+Rinobot-Team coach: [188, 0] no player type for opponent 3. restart analysis.
+Rinobot-Team coach: [189, 0] no player type for opponent 7. restart analysis.
+Rinobot-Team coach: [189, 0] no player type for opponent 3. restart analysis.
+Rinobot-Team coach: [189, 0] no player type for opponent 5. restart analysis.
+Rinobot-Team coach: [190, 0] no player type for opponent 2. restart analysis.
+Rinobot-Team coach: [192, 0] no player type for opponent 7. restart analysis.
+Rinobot-Team coach: [192, 0] no player type for opponent 10. restart analysis.
+Rinobot-Team coach: [193, 0] no player type for opponent 2. restart analysis.
+Rinobot-Team coach: [195, 0] no player type for opponent 11. restart analysis.
+Rinobot-Team coach: [195, 0] no player type for opponent 7. restart analysis.
+Rinobot-Team coach: [196, 0] no player type for opponent 10. restart analysis.
+Rinobot-Team coach: [156, 0] no player type for opponent 10. restart analysis.
+Rinobot-Team coach: [197, 0] no player type for opponent 7. restart analysis.
+Rinobot-Team coach: [197, 0] no player type for opponent 5. restart analysis.
+Rinobot-Team coach: [198, 0] no player type for opponent 10. restart analysis.
+Rinobot-Team coach: [198, 0] no player type for opponent 6. restart analysis.
+Rinobot-Team coach: [199, 0] no player type for opponent 10. restart analysis.
+Rinobot-Team coach: [199, 0] no player type for opponent 8. restart analysis.
+Rinobot-Team coach: [200, 0] no player type for opponent 5. restart analysis.
+Rinobot-Team coach: [200, 0] no player type for opponent 3. restart analysis.
+Rinobot-Team coach: [200, 0] no player type for opponent 6. restart analysis.
+Rinobot-Team coach: [200, 0] no player type for opponent 2. restart analysis.
+Rinobot-Team coach: [201, 0] no player type for opponent 8. restart analysis.
+Rinobot-Team coach: [204, 0] no player type for opponent 9. restart analysis.
+Rinobot-Team coach: [204, 0] no player type for opponent 6. restart analysis.
+Rinobot-Team coach: [206, 0] no player type for opponent 3. restart analysis.
+Rinobot-Team coach: [206, 0] no player type for opponent 5. restart analysis.
+Rinobot-Team coach: [208, 0] no player type for opponent 5. restart analysis.
+Rinobot-Team coach: [209, 0] no player type for opponent 6. restart analysis.
+Rinobot-Team coach: [161, 0] no player type for opponent 10. restart analysis.
+Rinobot-Team coach: [210, 0] determined opponent 11 type = 3
+Rinobot-Team coach: [212, 0] no player type for opponent 6. restart analysis.
+Rinobot-Team coach: [212, 0] no player type for opponent 8. restart analysis.
+Rinobot-Team coach: [214, 0] no player type for opponent 10. restart analysis.
+Rinobot-Team coach: [214, 0] no player type for opponent 8. restart analysis.
+Rinobot-Team coach: [214, 0] no player type for opponent 9. restart analysis.
+Rinobot-Team coach: [214, 0] no player type for opponent 2. restart analysis.
+Rinobot-Team coach: [162, 0] no player type for opponent 3. restart analysis.
+Rinobot-Team coach: [163, 0] no player type for opponent 8. restart analysis.
+Rinobot-Team coach: [163, 0] no player type for opponent 3. restart analysis.
+Rinobot-Team coach: [215, 0] no player type for opponent 3. restart analysis.
+Rinobot-Team coach: [216, 0] no player type for opponent 5. restart analysis.
+Rinobot-Team coach: [216, 0] no player type for opponent 4. restart analysis.
+Rinobot-Team coach: [165, 0] no player type for opponent 7. restart analysis.
+Rinobot-Team coach: [217, 0] no player type for opponent 2. restart analysis.
+Rinobot-Team coach: [167, 0] no player type for opponent 9. restart analysis.
+Rinobot-Team coach: [167, 0] no player type for opponent 7. restart analysis.
+Rinobot-Team coach: [168, 0] no player type for opponent 7. restart analysis.
+Rinobot-Team coach: [168, 0] no player type for opponent 8. restart analysis.
+Rinobot-Team coach: [219, 0] no player type for opponent 9. restart analysis.
+Rinobot-Team coach: [220, 0] no player type for opponent 10. restart analysis.
+Rinobot-Team coach: [222, 0] no player type for opponent 6. restart analysis.
+layerSize: 3
+Rinobot-Team coach: [171, 0] no player type for opponent 10. restart analysis.
+Rinobot-Team coach: [224, 0] determined opponent 4 type = 6
+Rinobot-Team coach: [224, 0] no player type for opponent 9. restart analysis.
+Rinobot-Team coach: [225, 0] no player type for opponent 5. restart analysis.
+Rinobot-Team coach: [225, 0] no player type for opponent 7. restart analysis.
+Rinobot-Team coach: [172, 0] no player type for opponent 3. restart analysis.
+Rinobot-Team coach: [227, 0] no player type for opponent 5. restart analysis.
+Rinobot-Team coach: [173, 0] no player type for opponent 2. restart analysis.
+Rinobot-Team coach: [228, 0] no player type for opponent 6. restart analysis.
+Rinobot-Team coach: [228, 0] no player type for opponent 7. restart analysis.
+Rinobot-Team coach: [228, 0] no player type for opponent 3. restart analysis.
+Rinobot-Team coach: [229, 0] determined opponent 5 type = 1
+Rinobot-Team coach: [175, 0] no player type for opponent 7. restart analysis.
+Rinobot-Team coach: [175, 0] no player type for opponent 10. restart analysis.
+Rinobot-Team coach: [230, 0] no player type for opponent 8. restart analysis.
+Rinobot-Team coach: [176, 0] no player type for opponent 10. restart analysis.
+Rinobot-Team coach: [176, 0] no player type for opponent 8. restart analysis.
+Rinobot-Team coach: [231, 0] no player type for opponent 7. restart analysis.
+Rinobot-Team coach: [231, 0] no player type for opponent 3. restart analysis.
+Rinobot-Team coach: [233, 0] no player type for opponent 8. restart analysis.
+Rinobot-Team coach: [233, 0] no player type for opponent 7. restart analysis.
+Rinobot-Team coach: [234, 0] no player type for opponent 7. restart analysis.
+Rinobot-Team coach: [235, 0] no player type for opponent 2. restart analysis.
+Rinobot-Team coach: [177, 0] no player type for opponent 7. restart analysis.
+Rinobot-Team coach: [177, 0] no player type for opponent 10. restart analysis.
+Rinobot-Team coach: [178, 0] no player type for opponent 7. restart analysis.
+Rinobot-Team coach: [179, 0] determined opponent 8 type = 7
+Rinobot-Team coach: [237, 0] no player type for opponent 7. restart analysis.
+Rinobot-Team coach: [237, 0] no player type for opponent 3. restart analysis.
+Rinobot-Team coach: [239, 0] determined opponent 10 type = 4
+Rinobot-Team coach: [239, 0] no player type for opponent 7. restart analysis.
+Rinobot-Team coach: [241, 0] no player type for opponent 7. restart analysis.
+Rinobot-Team coach: [242, 0] no player type for opponent 2. restart analysis.
+Rinobot-Team coach: [243, 0] determined opponent 6 type = 11
+Rinobot-Team coach: [243, 0] no player type for opponent 3. restart analysis.
+Rinobot-Team coach: [186, 0] sent freeform (player_types (1 0)(2 -1)(3 -1)(4 6)(5 1)(6 11)(7 -1)(8 7)(9 -1)(10 -1)(11 3))
+Rinobot-Team coach: [186, 0] freeform 1 / 128
+Rinobot-Team coach: [246, 0] no player type for opponent 9. restart analysis.
+Rinobot-Team coach: [247, 0] no player type for opponent 9. restart analysis.
+Rinobot-Team coach: [249, 0] no player type for opponent 7. restart analysis.
+Rinobot-Team coach: [249, 0] no player type for opponent 2. restart analysis.
+Rinobot-Team coach: [259, 0] determined opponent 9 type = 15
+Rinobot-Team coach: [188, 0] no player type for opponent 3. restart analysis.
+layerSize: 3
+Rinobot-Team coach: [192, 0] no player type for opponent 3. restart analysis.
+Rinobot-Team coach: [263, 0] no player type for opponent 2. restart analysis.
+Rinobot-Team coach: [266, 0] no player type for opponent 3. restart analysis.
+Rinobot-Team coach: [269, 0] no player type for opponent 3. restart analysis.
+Rinobot-Team coach: [217, 0] determined opponent 9 type = 15
+Rinobot-Team coach: [217, 0] sent freeform (player_types (1 0)(2 -1)(3 -1)(4 6)(5 1)(6 11)(7 -1)(8 7)(9 15)(10 -1)(11 3))
+Rinobot-Team coach: [217, 0] freeform 2 / 128
+Rinobot-Team coach: [271, 0] no player type for opponent 7. restart analysis.
+Rinobot-Team coach: [280, 0] no player type for opponent 3. restart analysis.
+Rinobot-Team coach: [282, 0] no player type for opponent 3. restart analysis.
+Rinobot-Team coach: [283, 0] no player type for opponent 3. restart analysis.
+Rinobot-Team coach: [284, 0] no player type for opponent 3. restart analysis.
+Rinobot-Team coach: [285, 0] determined opponent 8 type = 7
+Rinobot-Team coach: [293, 0] no player type for opponent 7. restart analysis.
+Rinobot-Team coach: [301, 0] updated clang capacity.
+Rinobot-Team coach: [301, 1] sent freeform (player_types (1 0)(2 -1)(3 -1)(4 6)(5 1)(6 11)(7 -1)(8 7)(9 15)(10 4)(11 3))
+Rinobot-Team coach: [301, 1] freeform 1 / 128
+Rinobot-Team coach: [267, 0] no player type for opponent 10. restart analysis.
+Rinobot-Team coach: [268, 0] no player type for opponent 7. restart analysis.
+Rinobot-Team coach: [273, 0] no player type for opponent 7. restart analysis.
+Rinobot-Team coach: [277, 0] no player type for opponent 3. restart analysis.
+Rinobot-Team coach: [277, 0] no player type for opponent 7. restart analysis.
+Rinobot-Team coach: [279, 0] no player type for opponent 7. restart analysis.
+Rinobot-Team coach: [286, 0] no player type for opponent 7. restart analysis.
+Rinobot-Team coach: [288, 0] determined opponent 10 type = 4
+Rinobot-Team coach: [291, 0] no player type for opponent 3. restart analysis.
+Rinobot-Team coach: [301, 0] updated clang capacity.
+Rinobot-Team coach: [303, 0] no player type for opponent 7. restart analysis.
+Rinobot-Team coach: [307, 0] no player type for opponent 3. restart analysis.
+Rinobot-Team coach: [315, 0] no player type for opponent 3. restart analysis.
+Rinobot-Team coach: [318, 0] no player type for opponent 3. restart analysis.
+Rinobot-Team coach: [324, 0] no player type for opponent 3. restart analysis.
+Rinobot-Team coach: [377, 0] no player type for opponent 3. restart analysis.
+Rinobot-Team coach: [379, 0] no player type for opponent 3. restart analysis.
+Rinobot-Team coach: [347, 0] no player type for opponent 7. restart analysis.
+Rinobot-Team coach: [392, 0] no player type for opponent 7. restart analysis.
+Rinobot-Team coach: [395, 0] no player type for opponent 7. restart analysis.
+Rinobot-Team coach: [352, 0] no player type for opponent 7. restart analysis.
+Rinobot-Team coach: [354, 0] no player type for opponent 7. restart analysis.
+Rinobot-Team coach: [355, 0] no player type for opponent 7. restart analysis.
+Rinobot-Team coach: [356, 0] no player type for opponent 7. restart analysis.
+Rinobot-Team coach: [404, 0] no player type for opponent 3. restart analysis.
+Rinobot-Team coach: [412, 0] no player type for opponent 2. restart analysis.
+Rinobot-Team coach: [360, 0] no player type for opponent 3. restart analysis.
+Rinobot-Team coach: [415, 0] no player type for opponent 2. restart analysis.
+Rinobot-Team coach: [416, 0] no player type for opponent 3. restart analysis.
+Rinobot-Team coach: [363, 0] no player type for opponent 7. restart analysis.
+Rinobot-Team coach: [365, 0] determined opponent 2 type = 8
+Rinobot-Team coach: [366, 0] no player type for opponent 7. restart analysis.
+Rinobot-Team coach: [425, 0] no player type for opponent 3. restart analysis.
+Rinobot-Team coach: [430, 0] no player type for opponent 7. restart analysis.
+Rinobot-Team coach: [432, 0] no player type for opponent 7. restart analysis.
+Rinobot-Team coach: [444, 0] no player type for opponent 3. restart analysis.
+Rinobot-Team coach: [446, 0] no player type for opponent 3. restart analysis.
+Rinobot-Team coach: [449, 0] no player type for opponent 3. restart analysis.
+Rinobot-Team coach: [406, 0] no player type for opponent 7. restart analysis.
+Rinobot-Team coach: [408, 0] no player type for opponent 7. restart analysis.
+Rinobot-Team coach: [489, 0] no player type for opponent 3. restart analysis.
+Rinobot-Team coach: [490, 0] no player type for opponent 3. restart analysis.
+Rinobot-Team 8: [413, 0]  WARNING. no body command.
+Rinobot-Team coach: [501, 0] no player type for opponent 3. restart analysis.
+Rinobot-Team coach: [516, 0] no player type for opponent 3. restart analysis.
+Rinobot-Team coach: [428, 0] no player type for opponent 7. restart analysis.
+Rinobot-Team coach: [518, 0] no player type for opponent 3. restart analysis.
+Rinobot-Team coach: [432, 0] no player type for opponent 3. restart analysis.
+Rinobot-Team coach: [435, 1] sent freeform (player_types (1 0)(2 8)(3 -1)(4 6)(5 1)(6 11)(7 -1)(8 7)(9 15)(10 4)(11 3))
+Rinobot-Team coach: [435, 1] freeform 3 / 128
+Rinobot-Team coach: [523, 0] no player type for opponent 7. restart analysis.
+Rinobot-Team coach: [526, 0] no player type for opponent 3. restart analysis.
+Rinobot-Team coach: [534, 0] no player type for opponent 7. restart analysis.
+Rinobot-Team coach: [536, 0] no player type for opponent 3. restart analysis.
+Rinobot-Team coach: [539, 0] no player type for opponent 3. restart analysis.
+Rinobot-Team coach: [542, 0] no player type for opponent 3. restart analysis.
+Rinobot-Team coach: [546, 0] no player type for opponent 3. restart analysis.
+Rinobot-Team coach: [550, 0] no player type for opponent 3. restart analysis.
+Killed. Exiting...Killed. Exiting...
+
+Rinobot-Team coach: finished.
+Rinobot-Team 9: finished.
+Killed. Exiting...
+Rinobot-Team 1: finished.
+Killed. Exiting...
+Rinobot-Team 7: finished.
+Killed. Exiting...
+Rinobot-Team 6: finished.
+Killed. Exiting...Killed. Exiting...Killed. Exiting...
+Killed. Exiting...
+Killed. Exiting...
+Rinobot-Team 5: finished.
+Killed. Exiting...
+Rinobot-Team 3: finished.
+Killed. Exiting...
+Rinobot-Team 11: finished.
+Killed. Exiting...Rinobot-Team 4: finished.
+
+Killed. Exiting...
+Rinobot-Team 8: finished.
+Killed. Exiting...
+Rinobot-Team 5: finished.
+Rinobot-Team 11: finished.
+Killed. Exiting...
+Rinobot-Team 4: finished.
+Killed. Exiting...
+Rinobot-Team 10: finished.
+Rinobot-Team 6: finished.
+Killed. Exiting...
+Rinobot-Team 7: finished.
+
+Rinobot-Team 2: finished.
+Killed. Exiting...
+Rinobot-Team 1: finished.
+Killed. Exiting...
+Rinobot-Team 2: finished.
+Killed. Exiting...
+Rinobot-Team coach: finished.
+Killed. Exiting...
+Rinobot-Team 10: finished.
+Killed. Exiting...
+Rinobot-Team 9: finished.
+Killed. Exiting...
+Rinobot-Team 8: finished.
+
+Rinobot-Team 3: finished.

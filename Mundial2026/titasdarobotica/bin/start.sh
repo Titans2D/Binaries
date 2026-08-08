@@ -1,23 +1,22 @@
 #!/bin/sh
 
 echo "******************************************************************"
-echo " This program is modified by Rinobot."
-echo " Copyright 2025. Rinobot."
+echo " HELIOS base"
+echo " Created by Hidehisa Akiyama and Hiroki Shimora"
+echo " Copyright 2000-2007.  Hidehisa Akiyama"
+echo " Copyright 2007-2011.  Hidehisa Akiyama and Hiroki Shimora"
+echo " "
+echo " Gliders2d"
+echo " Copyright 2018-2019.  Mikhail Prokopenko and Peter Wang"
+echo " "
+echo " Cyrus2D_base"
+echo " Copyright 2021-2022.  Omid Amini and Nader Zare"
 echo " All rights reserved."
 echo "******************************************************************"
-echo " This program is based on agent2d created by Hidehisa Akiyama."
-echo " Copyright 2006 - 2011. Hidehisa Akiyama and Hiroki Shimora."
-echo " All rights reserved."
-echo "******************************************************************"
 
-DIR="$(cd "$(dirname "$0")" && pwd)"
 
-# Players load Setting::ReadJson() from ./data/settings/ (e.g. teams.conf, pimentao_verde.json)
-# relative to this directory — typically build/src/data/settings/, synced from src/data/settings/
-# on each build (CMake target copy_team_settings). Edit JSON under src/data/settings/ and rebuild.
-
-# dash aborta o script se "." falhar num ficheiro inexistente — testar antes de source
-LIBPATH=./lib
+DIR=`dirname $0`
+LIBPATH="${DIR}/lib"
 if [ x"$LIBPATH" != x ]; then
   if [ x"$LD_LIBRARY_PATH" = x ]; then
     LD_LIBRARY_PATH=$LIBPATH
@@ -27,26 +26,9 @@ if [ x"$LIBPATH" != x ]; then
   export LD_LIBRARY_PATH
 fi
 
-TEAM_LOG="${DIR}/../log/team_start.log"
-mkdir -p "$(dirname "${TEAM_LOG}")" 2>/dev/null || TEAM_LOG="/tmp/rinobot_team_start.log"
-
-server_port_open() {
-  _h="$1"
-  _p="$2"
-  if command -v nc >/dev/null 2>&1; then
-    nc -z "$_h" "$_p" 2>/dev/null
-    return $?
-  fi
-  if command -v ss >/dev/null 2>&1; then
-    ss -tln 2>/dev/null | grep -q ":${_p} "
-    return $?
-  fi
-  return 0
-}
-
 player="${DIR}/sample_player"
 coach="${DIR}/sample_coach"
-teamname="Rinobot-Team"
+teamname="Titans2026"
 host="localhost"
 port=6000
 coach_port=""
@@ -54,22 +36,10 @@ debug_server_host=""
 debug_server_port=""
 
 player_conf="${DIR}/player.conf"
-config_dir="${DIR}/formations-dt"
+config_dir="${DIR}/formations"
 
 coach_conf="${DIR}/coach.conf"
-# Banner/logo da equipa (aparece no monitor quando o tempo entra em campo)
-# Como no itandroids: usar team_logo.xpm no diretório do script; senão logo.xpm
-# Caminho absoluto (com aspas ao passar ao coach para paths com espaços)
-LOGO_ABS=""
-if [ -f "${DIR}/team_logo.xpm" ]; then
-  LOGO_ABS="$(cd "${DIR}" && pwd)/team_logo.xpm"
-  team_graphic="--use_team_graphic on"
-elif [ -f "${DIR}/logo.xpm" ]; then
-  LOGO_ABS="$(cd "${DIR}" && pwd)/logo.xpm"
-  team_graphic="--use_team_graphic on"
-else
-  team_graphic="--use_team_graphic off"
-fi
+team_graphic="--use_team_graphic off"
 
 number=11
 usecoach="true"
@@ -83,7 +53,6 @@ sleeptime=0
 debugopt=""
 coachdebug=""
 
-show_info=""
 offline_logging=""
 offline_mode=""
 fullstateopt=""
@@ -100,13 +69,14 @@ usage()
    echo "  -n, --number NUMBER          specifies the number of players"
    echo "  -u, --unum UNUM              specifies the uniform number of players"
    echo "  -C, --without-coach          specifies not to run the coach"
-   echo "  -i, --info                   show agent output during the game (default: off)"
    echo "  -f, --formation DIR          specifies the formation directory"
    echo "  --team-graphic FILE          specifies the team graphic xpm file"
    echo "  --offline-logging            writes offline client log (default: off)"
    echo "  --offline-client-mode        starts as an offline client (default: off)"
    echo "  --debug                      writes debug log (default: off)"
    echo "  --debug_DEBUG_CATEGORY       writes DEBUG_CATEGORY to debug log"
+   echo "  --debug-start-time TIME      the start time for recording debug log (default: -1)"
+   echo "  --debug-end-time TIME        the end time for recording debug log (default: 99999999)"
    echo "  --debug-server-connect       connects to the debug server (default: off)"
    echo "  --debug-server-host HOST     specifies debug server host (default: localhost)"
    echo "  --debug-server-port PORT     specifies debug server port (default: 6032)"
@@ -184,10 +154,6 @@ do
       usecoach="false"
       ;;
 
-    -i|--info)
-      show_info="1"
-      ;;
-
     -f|--formation)
       if [ $# -lt 2 ]; then
         usage
@@ -222,6 +188,24 @@ do
     --debug_*)
       debug_opt="${debug_opt} ${1}"
       ;;
+
+    --debug-start-time)
+      if [ $# -lt 2 ]; then
+        usage
+        exit 1
+      fi
+	  debug_opt="${debug_opt} --debug_start_time ${2}"
+	  shift 1
+	  ;;
+
+    --debug-end-time)
+      if [ $# -lt 2 ]; then
+        usage
+        exit 1
+      fi
+	  debug_opt="${debug_opt} --debug_end_time ${2}"
+	  shift 1
+	  ;;
 
     --debug-server-connect)
       debugopt="${debugopt} --debug_server_connect"
@@ -334,43 +318,21 @@ opt="${opt} --debug_server_port ${debug_server_port}"
 opt="${opt} ${offline_logging}"
 opt="${opt} ${debugopt}"
 
-if ! ping -c 1 "$host" >/dev/null 2>&1; then
-  echo "AVISO: host '${host}' não responde ao ping." 1>&2
-fi
-
-if ! server_port_open "$host" "$port"; then
-  echo "" 1>&2
-  echo "AVISO: nada escuta em ${host}:${port} (rcssserver parado?)." 1>&2
-  echo "  Terminal 1: rcssserver" 1>&2
-  echo "            ou: rcssserver server::port=${port}" 1>&2
-  echo "  Terminal 2: cd $(dirname "$DIR")/src 2>/dev/null || cd ${DIR}" 1>&2
-  echo "            ./start.sh -i" 1>&2
-  echo "  Monitor: localhost:${port} -> Kick Off para a equipa entrar em campo." 1>&2
-  echo "" 1>&2
-fi
-
-# Run agent with optional output suppression (-i enables output)
-run_agent() {
-  if [ -n "${show_info}" ]; then
-    "$@" &
-  else
-    "$@" >>"${TEAM_LOG}" 2>&1 &
-  fi
-}
+ping -c 1 $host
 
 if [ $number -gt 0 ]; then
   offline_number=""
   if  [ X"${offline_mode}" != X'' ]; then
     offline_number="--offline_client_number 1"
     if [ $unum -eq 0 ]; then
-      run_agent $player ${opt} -g ${offline_number}
+      $player ${opt} -g ${offline_number} &
       $sleepprog $goaliesleep
     elif [ $unum -eq 1 ]; then
-      run_agent $player ${opt} -g ${offline_number}
+      $player ${opt} -g ${offline_number} &
       $sleepprog $goaliesleep
     fi
   else
-    run_agent $player ${opt} -g
+    $player ${opt} -g &
     $sleepprog $goaliesleep
   fi
 fi
@@ -381,14 +343,14 @@ while [ $i -le ${number} ] ; do
   if  [ X"${offline_mode}" != X'' ]; then
     offline_number="--offline_client_number ${i}"
     if [ $unum -eq 0 ]; then
-      run_agent $player ${opt} ${offline_number}
+      $player ${opt} ${offline_number} &
       $sleepprog $sleeptime
     elif [ $unum -eq $i ]; then
-      run_agent $player ${opt} ${offline_number}
+      $player ${opt} ${offline_number} &
       $sleepprog $sleeptime
     fi
   else
-    run_agent $player ${opt}
+    $player ${opt} &
     $sleepprog $sleeptime
   fi
 
@@ -408,37 +370,11 @@ if [ "${usecoach}" = "true" ]; then
   if  [ X"${offline_mode}" != X'' ]; then
     offline_mode="--offline_client_mode"
     if [ $unum -eq 0 ]; then
-      if [ -n "${LOGO_ABS}" ]; then run_agent $coach ${coachopt} --team_graphic_file "${LOGO_ABS}" ${offline_mode}; else run_agent $coach ${coachopt} ${offline_mode}; fi
+      $coach ${coachopt} ${offline_mode} &
     elif [ $unum -eq 12 ]; then
-      if [ -n "${LOGO_ABS}" ]; then run_agent $coach ${coachopt} --team_graphic_file "${LOGO_ABS}" ${offline_mode}; else run_agent $coach ${coachopt} ${offline_mode}; fi
+      $coach ${coachopt} ${offline_mode} &
     fi
   else
-    if [ -n "${LOGO_ABS}" ]; then run_agent $coach ${coachopt} --team_graphic_file "${LOGO_ABS}"; else run_agent $coach ${coachopt}; fi
+    $coach ${coachopt} &
   fi
 fi
-
-sleep 2
-_player_n=0
-if command -v pgrep >/dev/null 2>&1; then
-  _player_n=$(pgrep -f "${player}" 2>/dev/null | wc -l)
-fi
-if [ "${_player_n}" -eq 0 ] 2>/dev/null; then
-  echo "" 1>&2
-  echo "ERRO: nenhum jogador ficou em execução." 1>&2
-  if [ -z "${show_info}" ]; then
-    echo "  Sem -i, a saída foi para: ${TEAM_LOG}" 1>&2
-    echo "  Últimas linhas:" 1>&2
-    tail -n 15 "${TEAM_LOG}" 2>/dev/null | sed 's/^/    /' 1>&2
-  fi
-  echo "  Confirme: rcssserver na porta ${port}; librcsc em LD_LIBRARY_PATH." 1>&2
-  exit 1
-fi
-
-echo ""
-echo "Equipa '${teamname}' lançada (${_player_n} jogadores + coach)."
-echo "  Servidor: ${host}:${port}  |  Coach: ${host}:${coach_port}"
-if [ -z "${show_info}" ]; then
-  echo "  Log dos agentes: ${TEAM_LOG}  (use ./start.sh -i para ver no terminal)"
-fi
-echo "  No monitor: conecte a ${host}:${port} e dê Kick Off."
-echo ""
