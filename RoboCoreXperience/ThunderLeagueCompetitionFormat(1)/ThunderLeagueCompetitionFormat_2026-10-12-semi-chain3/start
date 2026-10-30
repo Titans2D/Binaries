@@ -1,0 +1,56 @@
+#!/bin/sh
+
+# Competition launcher. The organizers' runner calls this once per agent:
+#   ./start <server-host> <basedir> <player-number>
+# with <player-number> = 1..11 for the players and 12 for the online coach.
+
+HOST=$1
+BASEDIR=$2
+NUM=$3
+
+port=6000
+coach_port=6002
+
+LIBPATH=./lib
+if [ x"$LIBPATH" != x ]; then
+  if [ x"$LD_LIBRARY_PATH" = x ]; then
+    LD_LIBRARY_PATH=$LIBPATH
+  else
+    LD_LIBRARY_PATH=$LIBPATH:$LD_LIBRARY_PATH
+  fi
+  export LD_LIBRARY_PATH
+fi
+
+teamname="ThunderLeague"
+
+player="./thunder_player"
+coach="./thunder_coach"
+
+config="./player.conf"
+config_dir="./formations-dt"
+coach_config="./coach.conf"
+
+opt="--player-config ${config} --config_dir ${config_dir}"
+opt="${opt} -h ${HOST} -p ${port} -t ${teamname}"
+
+coachopt="--coach-config ${coach_config}"
+coachopt="${coachopt} -h ${HOST} -p ${coach_port} -t ${teamname}"
+
+team_graphic="--use_team_graphic on --team_graphic_file thunder_logo.xpm"
+coachopt="${coachopt} ${team_graphic}"
+
+# The CYRUS base reads ./data/deep/* and ./data/settings/* relative to the
+# working directory, so every agent must run from ${BASEDIR}.
+cd "$BASEDIR" || exit 1
+
+case $NUM in
+    1)
+        $player $opt -g
+        ;;
+    12)
+        $coach $coachopt
+        ;;
+    *)
+        $player $opt
+        ;;
+esac

@@ -1,0 +1,10 @@
+prefix=/home/enplo/local/cyruslib
+exec_prefix=/home/enplo/local/cyruslib
+libdir=/home/enplo/local/cyruslib/lib
+includedir=/home/enplo/local/cyruslib/include
+
+Name: libcyrus
+Description: a base library for developing a RoboCup soccer simulation client
+Version: 
+Libs: -L${libdir} -lrcsc -lz -lm
+Cflags: -I${includedir}

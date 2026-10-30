@@ -1,0 +1,17 @@
+{
+	"Strategy":	{
+				"Formation": "433 or HeliosFra",
+				"TeamTactic":"Normal"
+			},
+	"ChainAction":	{
+				"ChainNodeNumber":2000,
+				"ChainDeph":3,
+				"UseShootSafe":false
+			},
+	"OffensiveMove":{
+				"Is9BrokeOffside":false
+			},
+	"DeffenseMove": {
+				"PassBlock":false
+			}
+}

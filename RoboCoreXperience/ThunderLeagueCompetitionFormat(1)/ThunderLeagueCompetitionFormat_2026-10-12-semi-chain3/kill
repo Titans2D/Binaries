@@ -1,0 +1,14 @@
+#!/bin/sh
+
+# killall matches the process (executable) name, not the RoboCup team name,
+# so these must be the binary basenames produced by the build.
+player="thunder_player"
+coach="thunder_coach"
+
+killall -TERM ${player}
+killall -TERM ${coach}
+
+sleep 2
+
+killall -KILL ${player}
+killall -KILL ${coach}

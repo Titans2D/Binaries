@@ -1,0 +1,8 @@
+#!/bin/sh
+player="sample_player"
+coach="sample_coach"
+killall -TERM ${player} 2>/dev/null
+killall -TERM ${coach} 2>/dev/null
+sleep 2
+killall -KILL ${player} 2>/dev/null
+killall -KILL ${coach} 2>/dev/null
